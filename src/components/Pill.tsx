@@ -1,11 +1,18 @@
 import { FC, ReactNode } from "react";
 
-export const Pill: FC<{
+type PillProps = {
   selected?: boolean;
   onClick?: () => void;
   className?: string;
   children: ReactNode;
-}> = ({ selected, onClick, className = "", children }) => {
+};
+
+export const Pill: FC<PillProps> = ({
+  selected,
+  onClick,
+  className = "",
+  children,
+}) => {
   return (
     <div
       className={`${selected ? "bg-red-500" : ""} ${className}`}
