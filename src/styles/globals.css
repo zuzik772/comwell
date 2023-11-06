@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 700 */
+@font-face {
+    font-family: 'Fellix-Bold';
+    src: url('../fonts/Fellix-Bold.ttf');
+}
+
+/* 600 */
+@font-face {
+    font-family: 'Fellix-SemiBold';
+    src: url('../fonts/Fellix-SemiBold.ttf');
+}
+
+/* 500 */
+@font-face {
+    font-family: 'Fellix-Medium';
+    src: url('../fonts/Fellix-Medium.ttf');
+}
+
+/* 400 */
+@font-face {
+    font-family: 'Fellix-Regular';
+    src: url('../fonts/Fellix-Regular.ttf');
+}
+
+body {
+    font-family: 'Fellix-Regular';
+}
