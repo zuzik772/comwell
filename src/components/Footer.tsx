@@ -8,12 +8,16 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
-import { GrLanguage } from "react-icons/gr";
-import { FooterHeadings } from "./FooterHeadings";
+import { MdLanguage } from "react-icons/md";
+import { FooterHeading } from "./FooterHeadings";
 import { FooterSocialMedia } from "./FooterSocialMedia";
-import { IconBaseProps } from "react-icons/lib/esm/iconBase";
+import { ReactNode, useState } from "react";
 
 export const Footer = () => {
+  const [hoveredTitle, setHoveredTitle] = useState<ReactNode | null>("");
+  const handleHover = (title: ReactNode | null) => {
+    setHoveredTitle(title);
+  };
   const titles = [
     "Offer",
     "Meeting & Conference",
@@ -39,12 +43,21 @@ export const Footer = () => {
         <ul>
           {titles.map((title) => {
             return (
-              <FooterListItem customClass="text-3xl">{title}</FooterListItem>
+              <FooterListItem
+                handleHover={handleHover}
+                customClass={`text-3xl cursor-pointer ${
+                  hoveredTitle === title || hoveredTitle === null
+                    ? "opacity-100"
+                    : "opacity-50"
+                }`}
+              >
+                {title}
+              </FooterListItem>
             );
           })}
         </ul>
         <ul>
-          <FooterHeadings heading="contact" />
+          <FooterHeading heading="contact" />
           <Link href={""}>
             <li>Contact Comwells Departments</li>
           </Link>
@@ -53,7 +66,7 @@ export const Footer = () => {
           </Link>
         </ul>
         <ul>
-          <FooterHeadings heading="book" />
+          <FooterHeading heading="book" />
           <div className="flex flex-col gap-8">
             <FooterContactListItem
               title={"Book accommodation"}
@@ -68,11 +81,14 @@ export const Footer = () => {
           </div>
         </ul>
         <ul>
-          <FooterHeadings heading="links" />
+          <FooterHeading heading="links" />
 
           {links.map((link) => {
             return (
-              <FooterListItem customClass="text-sm leading-6">
+              <FooterListItem
+                handleHover={handleHover}
+                customClass={`text-sm leading-6`}
+              >
                 {link}
               </FooterListItem>
             );
@@ -98,8 +114,8 @@ export const Footer = () => {
             icon={<AiFillInstagram size={22} className="m-2" />}
           />
         </ul>
-        <button className="flex justify-center items-center">
-          <GrLanguage />
+        <button className="flex justify-center items-center gap-1">
+          <MdLanguage />
           English
         </button>
       </nav>

@@ -2,7 +2,7 @@ type FooterHeadingsProps = {
   heading: string;
 };
 
-export const FooterHeadings = ({ heading }: FooterHeadingsProps) => {
+export const FooterHeading = ({ heading }: FooterHeadingsProps) => {
   return (
     <h6
       className={
