@@ -37,8 +37,19 @@ export const Dropdown: FC<DropdownProps> = ({
   const [dropdownValue, setDropdownValue] = useState<string>("");
 
   // Set formatted values
-  const setDropdownTextValue = (value: string | number) => {
-    setDropdownValue(value as string);
+  const setDropdownTextValue = (
+    value: string | number,
+    type: "text" | "hotel" | "event" | "time"
+  ) => {
+    setDropdownValue(
+      (value as string) || type === "hotel"
+        ? "Choose hotel"
+        : type === "event"
+        ? "Choose type"
+        : type === "time"
+        ? "Select time"
+        : "Empty"
+    );
   };
 
   const setDropdownRoomValue = (values: RoomSearchParameters[]) => {
@@ -78,28 +89,20 @@ export const Dropdown: FC<DropdownProps> = ({
   useEffect(() => {
     switch (type) {
       case "text":
-        setDropdownTextValue((value as string | number) || "Empty");
-        break;
       case "hotel":
-        setDropdownTextValue((value as string) || "Choose hotel");
-        break;
       case "event":
-        setDropdownTextValue((value as string) || "Choose type");
+      case "time":
+        setDropdownTextValue(value as string, type);
         break;
       case "rooms":
         setDropdownRoomValue(value as RoomSearchParameters[]);
         break;
       case "checkIn":
-        setDropdownDateValue(value as Date);
-        break;
       case "checkOut":
         setDropdownDateValue(value as Date);
         break;
       case "dates":
         setDropdownDatesValue(value as HotelDatesParameters);
-        break;
-      case "time":
-        setDropdownTextValue((value as string) || "Time");
         break;
     }
   }, [value]);
