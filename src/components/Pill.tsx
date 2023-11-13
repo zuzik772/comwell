@@ -8,7 +8,12 @@ type PillProps = {
 
 export const Pill: FC<PillProps> = ({ selected, onClick, children }) => {
   return (
-    <button className={selected ? "bg-red-500" : ""} onClick={onClick}>
+    <button
+      className={`${
+        selected ? "bg-primary text-white" : ""
+      } text-xs font-semibold px-4 h-6 rounded-full`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

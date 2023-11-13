@@ -10,7 +10,7 @@ type ProfilePopupProps = {
 export const ProfilePopup: FC<ProfilePopupProps> = ({ isVisible }) => {
   return (
     <div
-      className={`bg-white fixed right-32 top-28 flex flex-col rounded-xl w-72 duration-200 ${
+      className={`bg-white fixed right-32 top-28 flex flex-col rounded-xl w-72 duration-200 z-50 ${
         !isVisible && "opacity-0 pointer-events-none"
       }`}
     >

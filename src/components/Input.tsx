@@ -4,6 +4,7 @@ type InputProps = {
   type?: "text" | "password" | "email" | "number";
   placeholder?: string;
   value?: string;
+  callback?: (value: string) => void;
 };
 
 export const Input: FC<InputProps> = ({ type, placeholder, value }) => {

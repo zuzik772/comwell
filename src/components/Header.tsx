@@ -24,7 +24,7 @@ export const Header: FC = () => {
   return (
     <>
       <header
-        className={`z-50 fixed w-full duration-200 ${
+        className={`z-50 fixed w-full flex justify-center duration-200 ${
           navbarVisible || forceNavbarVisible
             ? "bg-secondary"
             : "bg-transparent"
@@ -33,7 +33,7 @@ export const Header: FC = () => {
         <nav
           className={`${
             navbarVisible || forceNavbarVisible ? "invert-0" : "invert"
-          } duration-200 w-full p-6 flex justify-between font-semibold`}
+          } max-w-screen-2xl w-full duration-200 p-6 flex justify-between font-semibold`}
         >
           <Link href="/" title={"Go to frontpage"}>
             <Image src={logo} alt="Comwell Hotels" />
@@ -71,7 +71,7 @@ export const Header: FC = () => {
       </header>
 
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-black duration-200 ${
+        className={`fixed top-0 left-0 w-full h-full bg-black z-40 duration-200 ${
           locationsOpen || profileOpen || menuOpen
             ? "opacity-50"
             : "opacity-0 pointer-events-none"
