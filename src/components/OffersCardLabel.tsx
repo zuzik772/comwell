@@ -1,8 +1,8 @@
 import { OffersCard } from "./OffersCard";
 
 type OffersCardLabelProps = {
-  label: any;
-  labelDesc: any;
+  label: string;
+  labelDesc: string;
 };
 
 export const OffersCardLabel = ({ label, labelDesc }: OffersCardLabelProps) => {
