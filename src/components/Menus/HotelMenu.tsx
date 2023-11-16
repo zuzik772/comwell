@@ -1,14 +1,22 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Pill } from "../Pill";
 import { Menu } from "./Menu";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { hotels } from "@/data/hotels";
+import { BiCheck } from "react-icons/bi";
+import { useHotelSearchStore } from "@/stores/hotelSearchStore";
+import { Hotels } from "@/types/HotelSearchParameters";
 
 export const HotelMenu: FC = () => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
-  const [regionSelected, setRegionSelected] = useState("All");
+  const [regionSelected, setRegionSelected] = useState<
+    "All" | "Zealand" | "Funen" | "Jutland"
+  >("All");
+
+  const hotel = useHotelSearchStore((state) => state.hotel);
+  const setHotel = useHotelSearchStore((state) => state.setHotel);
 
   return (
     <Menu title="Hotels" name="hotels">
@@ -41,19 +49,38 @@ export const HotelMenu: FC = () => {
       </section>
 
       <section className="flex flex-col gap-2">
-        {Object.entries(hotels).map(([name, info]) => (
-          <div
-            className="flex border border-gray-300 rounded-sm h-16 cursor-pointer"
-            key={name}
-          >
-            <img src={info.picture} alt={name} className="h-full" />
-            {/* TODO: Selection and fix styling */}
-            <div className="flex flex-col p-2">
-              <p className="text-lg font-semibold">{name}</p>
-              <p>{info.location}</p>
-            </div>
-          </div>
-        ))}
+        {Object.entries(hotels).map(
+          ([name, info]) =>
+            (regionSelected === "All" || regionSelected === info.group) && (
+              <div
+                className="flex justify-between border border-gray-300 hover:border-gray-500 rounded-sm h-16 cursor-pointer"
+                key={name}
+                onClick={() => setHotel(name as Hotels)}
+              >
+                <section className="relative">
+                  <img
+                    src={info.picture}
+                    alt={name}
+                    className="h-full w-20 object-cover absolute"
+                  />
+                  {/* TODO: Selection and fix styling */}
+                  <div className="ml-20 flex flex-col p-2">
+                    <p className="text-lg font-semibold">{name}</p>
+                    <p>{info.location}</p>
+                  </div>
+                </section>
+                <section className="flex items-center pr-4">
+                  <div
+                    className={`cursor-pointer bg-primary rounded-full p-1 h-fit ${
+                      hotel !== name && "hidden"
+                    }`}
+                  >
+                    <BiCheck className="text-white text-lg" />
+                  </div>
+                </section>
+              </div>
+            )
+        )}
       </section>
     </Menu>
   );

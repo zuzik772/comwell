@@ -2,7 +2,7 @@ import {
   HotelDatesParameters,
   RoomSearchParameters,
 } from "@/types/HotelSearchParameters";
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 
 type DropdownProps = {
@@ -42,7 +42,9 @@ export const Dropdown: FC<DropdownProps> = ({
     type: "text" | "hotel" | "event" | "time"
   ) => {
     setDropdownValue(
-      (value as string) || type === "hotel"
+      (value as string)
+        ? (value as string)
+        : type === "hotel"
         ? "Choose hotel"
         : type === "event"
         ? "Choose type"
