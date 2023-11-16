@@ -1,6 +1,7 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { MenuContainer } from "./MenuContainer";
 
 type LayoutProps = {
   children: ReactNode;
@@ -8,10 +9,11 @@ type LayoutProps = {
 
 export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
+    <>
+      <MenuContainer />
       <Header />
       <main>{children}</main>
       <Footer />
-    </div>
+    </>
   );
 };

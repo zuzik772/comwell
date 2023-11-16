@@ -1,10 +1,9 @@
 import { ChangeEvent, FC, useState } from "react";
 
 type InputProps = {
-  type?: "text" | "password" | "email" | "number";
+  type?: "text" | "number" | "password" | "email";
   placeholder?: string;
-  value?: string;
-  callback?: (value: string) => void;
+  value?: string | number;
 };
 
 export const Input: FC<InputProps> = ({ type, placeholder, value }) => {

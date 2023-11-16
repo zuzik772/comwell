@@ -6,14 +6,27 @@ import { FaRegUser } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import { ProfilePopup } from "./ProfilePopup";
 import Link from "next/link";
+import { useHeaderControllerStore } from "@/stores/headerController";
+import { useMenuControllerStore } from "@/stores/menuControllerStore";
 
 export const Header: FC = () => {
-  const [navbarVisible, setNavbarVisible] = useState(false);
-  const [forceNavbarVisible, setForceNavbarVisible] = useState(false);
+  const navbarVisible = useHeaderControllerStore(
+    (state) => state.navbarVisible
+  );
+  const setNavbarVisible = useHeaderControllerStore(
+    (state) => state.setNavbarVisible
+  );
 
-  const [locationsOpen, setLocationsOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const forceNavbarVisible = useHeaderControllerStore(
+    (state) => state.forceNavbarVisible
+  );
+
+  const setForceNavbarVisible = useHeaderControllerStore(
+    (state) => state.setForceNavbarVisible
+  );
+
+  const openMenus = useMenuControllerStore((state) => state.openMenus);
+  const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -24,7 +37,7 @@ export const Header: FC = () => {
   return (
     <>
       <header
-        className={`z-50 fixed w-full flex justify-center duration-200 ${
+        className={`z-40 fixed w-full flex justify-center duration-200 ${
           navbarVisible || forceNavbarVisible
             ? "bg-secondary"
             : "bg-transparent"
@@ -42,8 +55,8 @@ export const Header: FC = () => {
             <li
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => {
+                addOpenMenu("locations");
                 setForceNavbarVisible(true);
-                setLocationsOpen(true);
               }}
             >
               Locations <BiChevronDown className="text-xl" />
@@ -51,7 +64,7 @@ export const Header: FC = () => {
             <li
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => {
-                setProfileOpen(true);
+                addOpenMenu("profile");
                 setForceNavbarVisible(true);
               }}
             >
@@ -60,7 +73,7 @@ export const Header: FC = () => {
             <li
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => {
-                setMenuOpen(true);
+                addOpenMenu("mainMenu");
                 setForceNavbarVisible(true);
               }}
             >
@@ -70,22 +83,9 @@ export const Header: FC = () => {
         </nav>
       </header>
 
-      <div
-        className={`fixed top-0 left-0 w-full h-full bg-black z-40 duration-200 ${
-          locationsOpen || profileOpen || menuOpen
-            ? "opacity-50"
-            : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => {
-          setForceNavbarVisible(false);
-          setLocationsOpen(false);
-          setProfileOpen(false);
-          setMenuOpen(false);
-        }}
-      />
-
+      {/* move these */}
       {/* Locations Card */}
-      <ProfilePopup isVisible={profileOpen} />
+      {/* <ProfilePopup isVisible={profileOpen} /> */}
       {/* Menu */}
     </>
   );

@@ -6,80 +6,24 @@ import heroImage from "../img/hero.jpg";
 import { Dropdown } from "@/components/Dropdown";
 import { Button } from "@/components/Button";
 import { FaSearch } from "react-icons/fa";
-import {
-  HotelDatesParameters,
-  MeetingTimesParameters,
-  RoomSearchParameters,
-} from "@/types/HotelSearchParameters";
+
+import { useHotelSearchStore } from "@/stores/hotelSearchStore";
+import { useMenuControllerStore } from "@/stores/menuControllerStore";
 
 const Home = () => {
   const [selectedPill, setSelectedPill] = useState<
     "Accommodation" | "Meeting & Conference" | "Banquet"
   >("Accommodation");
 
-  type AccommodationSearchValues = {
-    hotel: string | null;
-    rooms: RoomSearchParameters[];
-    dates: HotelDatesParameters;
-  };
+  const hotel = useHotelSearchStore((state) => state.hotel);
+  const rooms = useHotelSearchStore((state) => state.rooms);
+  const dates = useHotelSearchStore((state) => state.dates);
+  const participants = useHotelSearchStore((state) => state.participants);
+  const times = useHotelSearchStore((state) => state.times);
+  const event = useHotelSearchStore((state) => state.event);
 
-  type MeetingSearchValues = {
-    participants: number;
-    hotel: string | null;
-    dates: HotelDatesParameters;
-    times: MeetingTimesParameters;
-  };
-
-  type BanquetSearchValues = {
-    event: string | null;
-    participants: number;
-    hotel: string | null;
-    dates: HotelDatesParameters;
-  };
-
-  const [accommodationSearchValues, setAccommodationSearchValues] =
-    useState<AccommodationSearchValues>({
-      hotel: null,
-      rooms: [
-        {
-          adults: 1,
-          kids: 0,
-          infants: 0,
-        },
-      ],
-      dates: {
-        startDate: new Date(),
-        // Tomorrow
-        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-      },
-    });
-
-  const [meetingSearchValues, setMeetingSearchValues] =
-    useState<MeetingSearchValues>({
-      participants: 8,
-      hotel: null,
-      dates: {
-        startDate: new Date(),
-        // Tomorrow
-        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-      },
-      times: {
-        startTime: "08:00", // TODO: Make date?
-        endTime: "16:00", // TODO: Make date?
-      },
-    });
-
-  const [banquetSearchValues, setBanquetSearchValues] =
-    useState<BanquetSearchValues>({
-      event: null,
-      participants: 25,
-      hotel: null,
-      dates: {
-        startDate: new Date(),
-        // Tomorrow
-        endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-      },
-    });
+  const openMenus = useMenuControllerStore((state) => state.openMenus);
+  const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
   return (
     <main>
@@ -113,27 +57,27 @@ const Home = () => {
                   <Dropdown
                     type="hotel"
                     title="Hotel"
-                    value={accommodationSearchValues.hotel}
-                    onClick={() => alert("Hotel Dropdown Clicked")}
+                    value={hotel}
+                    onClick={() => addOpenMenu("hotels")}
                   />
                   <Dropdown
                     type="rooms"
                     title="Rooms"
-                    value={accommodationSearchValues.rooms}
-                    onClick={() => alert("Rooms Dropdown Clicked")}
+                    value={rooms}
+                    onClick={() => addOpenMenu("rooms")}
                   />
                   <div className="flex gap-2">
                     <Dropdown
                       type="checkIn"
                       title="Check in"
-                      value={accommodationSearchValues.dates.startDate}
+                      value={dates.startDate}
                       onClick={() => alert("Check In Dropdown Clicked")}
                       small
                     />
                     <Dropdown
                       type="checkOut"
                       title="Check out"
-                      value={accommodationSearchValues.dates.endDate}
+                      value={dates.endDate}
                       onClick={() => alert("Check Out Dropdown Clicked")}
                       small
                     />
@@ -152,33 +96,33 @@ const Home = () => {
                   <Dropdown
                     type="text"
                     title="Amount of participants"
-                    value={meetingSearchValues.participants}
+                    value={participants}
                     onClick={() => alert("Participants Dropdown Clicked")}
                   />
                   <Dropdown
                     type="hotel"
                     title="Hotel"
-                    value={meetingSearchValues.hotel}
+                    value={hotel}
                     onClick={() => alert("Hotel Dropdown Clicked")}
                   />
                   <Dropdown
                     type="dates"
                     title="Date"
-                    value={meetingSearchValues.dates}
+                    value={dates}
                     onClick={() => alert("Dates Dropdown Clicked")}
                   />
                   <div className="flex gap-2">
                     <Dropdown
                       type="time"
                       title="Start"
-                      value={meetingSearchValues.times.startTime}
+                      value={times.startTime}
                       onClick={() => alert("Start Dropdown Clicked")}
                       small
                     />
                     <Dropdown
                       type="time"
                       title="End"
-                      value={meetingSearchValues.times.endTime}
+                      value={times.endTime}
                       onClick={() => alert("End Dropdown Clicked")}
                       small
                     />
@@ -197,25 +141,25 @@ const Home = () => {
                   <Dropdown
                     type="event"
                     title="Event type"
-                    value={banquetSearchValues.event}
+                    value={event}
                     onClick={() => alert("Event Type Dropdown Clicked")}
                   />
                   <Dropdown
                     type="text"
                     title="Amount of participants"
-                    value={banquetSearchValues.participants}
+                    value={participants}
                     onClick={() => alert("Participants Dropdown Clicked")}
                   />
                   <Dropdown
                     type="hotel"
                     title="Hotel"
-                    value={banquetSearchValues.hotel}
+                    value={hotel}
                     onClick={() => alert("Hotel Dropdown Clicked")}
                   />
                   <Dropdown
                     type="dates"
                     title="Date"
-                    value={banquetSearchValues.dates}
+                    value={dates}
                     onClick={() => alert("Dates Dropdown Clicked")}
                   />
 
