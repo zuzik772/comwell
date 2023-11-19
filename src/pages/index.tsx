@@ -71,22 +71,30 @@ const Home = () => {
                       type="checkIn"
                       title="Check in"
                       value={dates.startDate}
-                      onClick={() => alert("Check In Dropdown Clicked")}
+                      onClick={() => addOpenMenu("datePicker")}
                       small
                     />
                     <Dropdown
                       type="checkOut"
                       title="Check out"
                       value={dates.endDate}
-                      onClick={() => alert("Check Out Dropdown Clicked")}
+                      onClick={() => addOpenMenu("datePicker")}
                       small
                     />
                   </div>
 
                   <Button
-                    onClick={() => alert("Search Button Clicked")}
+                    onClick={() => addOpenMenu("search")}
                     fullWidth
-                    disabled // TODO: Handle disabled state
+                    disabled={
+                      !(
+                        hotel &&
+                        rooms.length > 0 &&
+                        dates.startDate &&
+                        dates.endDate &&
+                        dates.endDate > dates.startDate
+                      )
+                    }
                   >
                     Search <FaSearch />
                   </Button>
@@ -103,13 +111,13 @@ const Home = () => {
                     type="hotel"
                     title="Hotel"
                     value={hotel}
-                    onClick={() => alert("Hotel Dropdown Clicked")}
+                    onClick={() => addOpenMenu("hotels")}
                   />
                   <Dropdown
                     type="dates"
                     title="Date"
                     value={dates}
-                    onClick={() => alert("Dates Dropdown Clicked")}
+                    onClick={() => addOpenMenu("datePicker")}
                   />
                   <div className="flex gap-2">
                     <Dropdown
@@ -131,7 +139,16 @@ const Home = () => {
                   <Button
                     onClick={() => alert("Request Button Clicked")}
                     fullWidth
-                    disabled // TODO: Handle disabled state
+                    disabled={
+                      !(
+                        participants &&
+                        hotel &&
+                        dates &&
+                        times.startTime &&
+                        times.endTime &&
+                        dates.endDate > dates.startDate
+                      )
+                    }
                   >
                     Request <FaSearch />
                   </Button>
@@ -154,19 +171,28 @@ const Home = () => {
                     type="hotel"
                     title="Hotel"
                     value={hotel}
-                    onClick={() => alert("Hotel Dropdown Clicked")}
+                    onClick={() => addOpenMenu("hotels")}
                   />
                   <Dropdown
                     type="dates"
                     title="Date"
                     value={dates}
-                    onClick={() => alert("Dates Dropdown Clicked")}
+                    onClick={() => addOpenMenu("datePicker")}
                   />
 
                   <Button
                     onClick={() => alert("Request Button Clicked")}
                     fullWidth
-                    disabled // TODO: Handle disabled state
+                    disabled={
+                      !(
+                        event &&
+                        participants &&
+                        hotel &&
+                        dates.startDate &&
+                        dates.endDate &&
+                        dates.endDate > dates.startDate
+                      )
+                    }
                   >
                     Request <FaSearch />
                   </Button>

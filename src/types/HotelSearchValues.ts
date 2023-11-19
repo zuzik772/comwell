@@ -2,17 +2,18 @@ import {
   RoomSearchParameters,
   HotelDatesParameters,
   MeetingTimesParameters,
+  Hotels,
 } from "./HotelSearchParameters";
 
 export type AccommodationSearchValues = {
-  hotel: string | null;
+  hotel: Hotels | null;
   rooms: RoomSearchParameters[];
   dates: HotelDatesParameters;
 };
 
 export type MeetingSearchValues = {
   participants: number;
-  hotel: string | null;
+  hotel: Hotels | null;
   dates: HotelDatesParameters;
   times: MeetingTimesParameters;
 };
@@ -20,6 +21,6 @@ export type MeetingSearchValues = {
 export type BanquetSearchValues = {
   event: string | null;
   participants: number;
-  hotel: string | null;
+  hotel: Hotels | null;
   dates: HotelDatesParameters;
 };

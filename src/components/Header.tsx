@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import logo from "../img/Logo.svg";
 import Image from "next/image";
 import { BiChevronDown } from "react-icons/bi";
@@ -25,7 +25,6 @@ export const Header: FC = () => {
     (state) => state.setForceNavbarVisible
   );
 
-  const openMenus = useMenuControllerStore((state) => state.openMenus);
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
   useEffect(() => {

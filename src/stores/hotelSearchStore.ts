@@ -36,7 +36,7 @@ type HotelSearchParameters = {
 
 export const useHotelSearchStore = create<HotelSearchParameters>((set) => ({
   hotel: null,
-  setHotel: (values) => set(() => ({ hotel: values })),
+  setHotel: (value) => set(() => ({ hotel: value })),
 
   rooms: [
     {

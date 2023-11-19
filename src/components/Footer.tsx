@@ -44,6 +44,7 @@ export const Footer = () => {
           {titles.map((title) => {
             return (
               <FooterListItem
+                key={title}
                 handleHover={handleHover}
                 customClass={`text-3xl cursor-pointer ${
                   hoveredTitle === title || hoveredTitle === null
@@ -86,6 +87,7 @@ export const Footer = () => {
           {links.map((link) => {
             return (
               <FooterListItem
+                key={link}
                 handleHover={handleHover}
                 customClass={`text-sm leading-6`}
               >

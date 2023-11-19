@@ -4,4 +4,5 @@ type MenuNames =
   | "datePicker"
   | "locations"
   | "profile"
+  | "search"
   | "mainMenu";

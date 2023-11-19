@@ -1,16 +1,12 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Pill } from "../Pill";
 import { Menu } from "./Menu";
-import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { hotels } from "@/data/hotels";
 import { BiCheck } from "react-icons/bi";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 import { Hotels } from "@/types/HotelSearchParameters";
 
 export const HotelMenu: FC = () => {
-  const openMenus = useMenuControllerStore((state) => state.openMenus);
-  const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
-
   const [regionSelected, setRegionSelected] = useState<
     "All" | "Zealand" | "Funen" | "Jutland"
   >("All");
@@ -63,7 +59,6 @@ export const HotelMenu: FC = () => {
                     alt={name}
                     className="h-full w-20 object-cover absolute"
                   />
-                  {/* TODO: Selection and fix styling */}
                   <div className="ml-20 flex flex-col p-2">
                     <p className="text-lg font-semibold">{name}</p>
                     <p>{info.location}</p>

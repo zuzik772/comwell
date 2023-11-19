@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { Menu } from "./Menu";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
-import { BiMinus, BiPlus } from "react-icons/bi";
-import { RoundedInput } from "../RoundedInput";
+import { BiPlus } from "react-icons/bi";
 import { RoomMenuRow } from "../RoomMenuRow";
 
 export const RoomsMenu: FC = () => {
@@ -30,7 +29,6 @@ export const RoomsMenu: FC = () => {
               title="Adults"
               description="12+ years"
               index={index}
-              key={index}
             />
             <RoomMenuRow
               room={room}
@@ -38,7 +36,6 @@ export const RoomsMenu: FC = () => {
               title="Kids"
               description="3-11 years"
               index={index}
-              key={index}
             />
             <RoomMenuRow
               room={room}
@@ -46,7 +43,6 @@ export const RoomsMenu: FC = () => {
               title="Infants"
               description="0-2 years"
               index={index}
-              key={index}
             />
           </section>
         </div>
