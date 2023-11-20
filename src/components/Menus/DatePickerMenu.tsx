@@ -10,13 +10,13 @@ export const DatePickerMenu: FC = () => {
     <Menu title="Dates" name="datePicker">
       <div className="flex flex-col gap-4">
         <section
-          className={`bg-red-400 rounded-md text-white px-6 py-3 ${
+          className={`bg-red-400 rounded-lg text-white px-6 py-3 ${
             dates.endDate > dates.startDate && "hidden"
           }`}
         >
           Invalid date range!
         </section>
-        <section className="flex gap-2 bg-primary p-6 justify-center rounded-md">
+        <section className="flex gap-2 bg-primary p-6 justify-center lgmd">
           <p className="text-white">Check in date:</p>
           <input
             type="date"
@@ -30,7 +30,7 @@ export const DatePickerMenu: FC = () => {
             className="bg-secondary"
           />
         </section>
-        <section className="flex gap-2 bg-primary p-6 justify-center rounded-md">
+        <section className="flex gap-2 bg-primary p-6 justify-center rounded-lg">
           <p className="text-white">Check out date:</p>
           <input
             type="date"

@@ -111,7 +111,7 @@ export const Dropdown: FC<DropdownProps> = ({
 
   return (
     <div
-      className={`border border-gray-300 hover:border-gray-500 rounded-md p-2 cursor-pointer ${
+      className={`border border-gray-300 hover:border-gray-500 rounded-lg p-2 cursor-pointer ${
         small ? "w-1/2" : "w-full"
       }`}
       onClick={onClick}

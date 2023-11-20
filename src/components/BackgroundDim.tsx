@@ -1,5 +1,6 @@
-import { useHeaderControllerStore } from "@/stores/headerController";
+import { useHeaderControllerStore } from "@/stores/headerControllerStore";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
+import { useSearchMenuControllerStore } from "@/stores/searchMenuControllerStore";
 import { FC } from "react";
 
 export const BackgroundDim: FC = () => {
@@ -10,6 +11,14 @@ export const BackgroundDim: FC = () => {
     (state) => state.setForceNavbarVisible
   );
 
+  const setSelectedRoom = useSearchMenuControllerStore(
+    (state) => state.setSearchMenuSelectedRoom
+  );
+
+  const setSelectedSubMenu = useSearchMenuControllerStore(
+    (state) => state.setSearchMenuSubMenu
+  );
+
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full bg-black z-50 duration-200 ${
@@ -18,6 +27,8 @@ export const BackgroundDim: FC = () => {
       onClick={() => {
         setOpenMenus([]);
         setForceNavbarVisible(false);
+        setSelectedRoom(null);
+        setSelectedSubMenu("selection");
       }}
     />
   );

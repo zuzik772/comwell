@@ -6,7 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
 import { ProfilePopup } from "./ProfilePopup";
 import Link from "next/link";
-import { useHeaderControllerStore } from "@/stores/headerController";
+import { useHeaderControllerStore } from "@/stores/headerControllerStore";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 
 export const Header: FC = () => {

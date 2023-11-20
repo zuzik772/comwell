@@ -12,7 +12,7 @@ export const Input: FC<InputProps> = ({ type, placeholder, value }) => {
 
   return (
     <div
-      className="border border-gray-300 rounded-md p-2 w-full font-semibold"
+      className="border border-gray-300 rounded-lg p-2 w-full font-semibold"
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >

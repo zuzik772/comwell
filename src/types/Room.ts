@@ -6,7 +6,7 @@ export type Amenities =
   | "IRON"
   | "WIFI";
 
-export type AvailableRooms = {
+export type Room = {
   name: string;
   description: string;
   pictures: string[];
