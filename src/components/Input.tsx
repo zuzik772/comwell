@@ -4,9 +4,15 @@ type InputProps = {
   type?: "text" | "number" | "password" | "email";
   placeholder?: string;
   value?: string | number;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const Input: FC<InputProps> = ({ type, placeholder, value }) => {
+export const Input: FC<InputProps> = ({
+  type,
+  placeholder,
+  value,
+  onChange,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState<string | number>("");
 
@@ -25,12 +31,12 @@ export const Input: FC<InputProps> = ({ type, placeholder, value }) => {
           {placeholder}
         </label>
         <input
-          type={type}
           value={value}
           className="outline-none mt-2 w-full"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setInputValue(event.target.value)
-          }
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            onChange && onChange(event);
+            setInputValue(event.target.value);
+          }}
         />
       </div>
     </div>

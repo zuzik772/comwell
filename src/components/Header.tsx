@@ -84,7 +84,7 @@ export const Header: FC = () => {
 
       {/* move these */}
       {/* Locations Card */}
-      {/* <ProfilePopup isVisible={profileOpen} /> */}
+      <ProfilePopup />
       {/* Menu */}
     </>
   );
