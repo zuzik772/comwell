@@ -41,6 +41,10 @@ export const Dropdown: FC<DropdownProps> = ({
     value: string | number,
     type: "text" | "hotel" | "event" | "time"
   ) => {
+    // If the value is a string (and is therefore not null) the value will be set to the passed value
+    // If the value is null a default placeholder value will be used
+    // This default placeholder depends on the type of dropdown (hotel, event or time)
+    // As a failsafe the default placeholder for a dropdown that isn't defined will be "Empty"
     setDropdownValue(
       (value as string)
         ? (value as string)
