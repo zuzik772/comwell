@@ -17,6 +17,7 @@ export const Menu: FC<{
   return (
     <main
       className={`fixed ${
+        // Large menus are double the size of normal menus, and their closing animation differs to compoensate
         large ? "w-[48rem]" : "w-96"
       }  h-screen bg-white z-[100] px-4 py-6 flex flex-col gap-4 duration-300 overflow-auto ${
         open ? "right-0" : large ? "-right-[48rem]" : "-right-96"

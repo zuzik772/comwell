@@ -7,12 +7,7 @@ type InputProps = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const Input: FC<InputProps> = ({
-  type,
-  placeholder,
-  value,
-  onChange,
-}) => {
+export const Input: FC<InputProps> = ({ placeholder, value, onChange }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputValue, setInputValue] = useState<string | number>("");
 

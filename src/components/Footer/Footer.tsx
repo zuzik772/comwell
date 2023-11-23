@@ -2,16 +2,16 @@ import { FooterListItem } from "./FooterListItem";
 import Link from "next/link";
 import { FooterContactListItem } from "./FooterContactListItem";
 import Image from "next/image";
-import logo from "../img/Logo.svg";
+import logo from "../../img/Logo.svg";
 import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
 import { MdLanguage } from "react-icons/md";
+import { ReactNode, useState } from "react";
 import { FooterHeading } from "./FooterHeadings";
 import { FooterSocialMedia } from "./FooterSocialMedia";
-import { ReactNode, useState } from "react";
 
 export const Footer = () => {
   const [hoveredTitle, setHoveredTitle] = useState<ReactNode | null>("");

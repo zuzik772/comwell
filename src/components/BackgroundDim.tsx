@@ -25,6 +25,7 @@ export const BackgroundDim: FC = () => {
         openMenus.length ? "opacity-50" : "opacity-0 pointer-events-none"
       }`}
       onClick={() => {
+        // Clicking the background closes all menus and resets all room related values
         setOpenMenus([]);
         setForceNavbarVisible(false);
         setSelectedRoom(null);

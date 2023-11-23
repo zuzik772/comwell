@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { Footer } from "./Footer/Footer";
 import { MenuContainer } from "./MenuContainer";
 
 type LayoutProps = {

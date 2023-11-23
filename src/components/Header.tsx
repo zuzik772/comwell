@@ -29,6 +29,7 @@ export const Header: FC = () => {
 
   useEffect(() => {
     window.onscroll = () => {
+      // If the user scrolls down 100px, the navbar becomes "visible"
       setNavbarVisible(window.scrollY > 100);
     };
   }, []);
@@ -82,10 +83,9 @@ export const Header: FC = () => {
         </nav>
       </header>
 
-      {/* move these */}
       {/* Locations Card */}
       <ProfilePopup />
-      {/* Menu */}
+      {/* Main Menu */}
     </>
   );
 };

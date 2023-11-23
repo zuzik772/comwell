@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Menu } from "./Menu";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 
@@ -9,6 +9,7 @@ export const DatePickerMenu: FC = () => {
   return (
     <Menu title="Dates" name="datePicker">
       <div className="flex flex-col gap-4">
+        {/* "Invalid date" banner if end date is before start date */}
         <section
           className={`bg-red-400 rounded-lg text-white px-6 py-3 ${
             dates.endDate > dates.startDate && "hidden"
@@ -20,6 +21,7 @@ export const DatePickerMenu: FC = () => {
           <p className="text-white">Check in date:</p>
           <input
             type="date"
+            // Format date to YYYY-MM-DD
             value={dates.startDate.toISOString().split("T")[0]}
             onChange={(event) =>
               setDates({
@@ -34,6 +36,7 @@ export const DatePickerMenu: FC = () => {
           <p className="text-white">Check out date:</p>
           <input
             type="date"
+            // Format date to YYYY-MM-DD
             value={dates.endDate.toISOString().split("T")[0]}
             onChange={(event) =>
               setDates({

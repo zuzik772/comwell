@@ -6,6 +6,7 @@ type HotelInformation = {
   group: "Zealand" | "Funen" | "Jutland";
 };
 
+// This is a mock of the data that would be fetched from the backend
 export const hotels: Record<Hotels, HotelInformation> = {
   Hotel1: {
     location: "Location 1",

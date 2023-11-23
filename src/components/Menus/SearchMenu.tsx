@@ -120,6 +120,8 @@ export const SearchMenu: FC = () => {
   }, [openMenus]);
 
   const handleBooking = async () => {
+    // Placeholder API call to book room (not implemented yet)
+
     // const response = await fetch("/api/bookRoom", {
     //   method: "POST",
     //   body: JSON.stringify({
@@ -150,14 +152,17 @@ export const SearchMenu: FC = () => {
     //     `An error occured while trying to book your rooms, please try again later. Error code: ${bookingConfirmation.error}`
     //   );
 
-    // DEMO:
+    // Demo while API is not implemented
     setSelectedSubMenu("bookingSuccess");
   };
 
   return (
     <Menu title="Choose room" name="search" large>
       {selectedSubMenu === "selection" ? (
+        // selection: Room picker
+
         <>
+          {/* If room search has completed (has rooms) */}
           {availableRooms.length ? (
             availableRooms.map((room) => (
               <RoomShowcaseCard
@@ -170,12 +175,14 @@ export const SearchMenu: FC = () => {
               />
             ))
           ) : (
+            // If room search has not completed, show loading spinner
             <div className="w-full h-full flex justify-center items-center">
               <LoadingSpinner />
             </div>
           )}
         </>
       ) : selectedSubMenu === "roomInfo" ? (
+        // roomInfo: General information about the selected room
         <>
           <div
             className="cursor-pointer bg-secondary rounded-full p-1.5 w-max"
@@ -217,6 +224,7 @@ export const SearchMenu: FC = () => {
           </div>
         </>
       ) : selectedSubMenu === "booking" ? (
+        // booking: Customer booking information
         <>
           <div className="flex h-full">
             <section className="w-3/5 h-full p-4 flex flex-col gap-4">
@@ -268,6 +276,7 @@ export const SearchMenu: FC = () => {
           </section>
         </>
       ) : selectedSubMenu === "bookingSuccess" ? (
+        // bookingSuccess: Booking sucessfully confirmed
         <>
           <section className="bg-primary w-full h-64 flex justify-center items-center">
             <BiCheckCircle className="text-9xl text-white" />

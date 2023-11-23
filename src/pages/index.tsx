@@ -1,5 +1,4 @@
 import { Pill } from "@/components/Pill";
-import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import heroImage from "../img/hero.jpg";
@@ -15,6 +14,7 @@ const Home = () => {
     "Accommodation" | "Meeting & Conference" | "Banquet"
   >("Accommodation");
 
+  // Getters for the hotel search store
   const hotel = useHotelSearchStore((state) => state.hotel);
   const rooms = useHotelSearchStore((state) => state.rooms);
   const dates = useHotelSearchStore((state) => state.dates);
@@ -22,7 +22,7 @@ const Home = () => {
   const times = useHotelSearchStore((state) => state.times);
   const event = useHotelSearchStore((state) => state.event);
 
-  const openMenus = useMenuControllerStore((state) => state.openMenus);
+  // Opens a new menu
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
   return (
@@ -87,6 +87,7 @@ const Home = () => {
                     onClick={() => addOpenMenu("search")}
                     fullWidth
                     disabled={
+                      // Disable the button if any of the required fields are empty
                       !(
                         hotel &&
                         rooms.length > 0 &&
@@ -139,6 +140,7 @@ const Home = () => {
                   <Button
                     onClick={() => alert("Request Button Clicked")}
                     fullWidth
+                    // Disable the button if any of the required fields are empty
                     disabled={
                       !(
                         participants &&
@@ -183,6 +185,7 @@ const Home = () => {
                   <Button
                     onClick={() => alert("Request Button Clicked")}
                     fullWidth
+                    // Disable the button if any of the required fields are empty
                     disabled={
                       !(
                         event &&
@@ -209,10 +212,8 @@ const Home = () => {
         />
       </section>
       <section>
-        <h1>Placeholder Text</h1>
+        <h1>Placeholder Comwell content and offers</h1>
       </section>
-      <br />
-      <Link href="/test">Test page</Link>
     </main>
   );
 };

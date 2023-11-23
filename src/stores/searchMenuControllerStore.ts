@@ -8,9 +8,11 @@ type SearchMenuSubMenus =
   | "bookingSuccess";
 
 type SearchMenuController = {
+  // Handles state of the selected room
   searchMenuSelectedRoom: Room | null;
   setSearchMenuSelectedRoom: (room: Room | null) => void;
 
+  // Handles state of the sub menu
   searchMenuSubMenu: SearchMenuSubMenus;
   setSearchMenuSubMenu: (subMenu: SearchMenuSubMenus) => void;
 };

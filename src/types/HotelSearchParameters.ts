@@ -14,7 +14,6 @@ export type HotelDatesParameters = {
 export type MeetingTimesParameters = {
   startTime: string;
   endTime: string;
-  // TODO: Make these dates?
 };
 
 export type Events =

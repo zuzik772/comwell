@@ -11,7 +11,7 @@ export const ProfilePopup: FC = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
-    // TODO: Login logic
+    // TODO: Login logic - Will be handled on seperate branch
   };
 
   return (

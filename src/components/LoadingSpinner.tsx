@@ -5,12 +5,11 @@ import { FC } from "react";
 export const LoadingSpinner: FC = () => {
   return (
     <PulseLoader
+      // Grab the primary color from the tailwind.config.js file
       color={
         (
           colors.theme?.extend?.colors as {
-            footer: string;
             primary: string;
-            secondary: string;
           }
         ).primary
       }

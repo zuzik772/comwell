@@ -6,6 +6,7 @@ import { DatePickerMenu } from "./Menus/DatePickerMenu";
 import { SearchMenu } from "./Menus/SearchMenu";
 
 export const MenuContainer: FC = () => {
+  // Contains all the sliding menus that can be opened
   return (
     <>
       <HotelMenu />
