@@ -266,7 +266,7 @@ export const SearchMenu: FC = () => {
               </div>
             </section>
           </div>
-          <section className="absolute bottom-0 left-0 w-full h-24 border-t border-gray-300 flex justify-end items-center px-4">
+          <section className="absolute bottom-0 left-0 w-full h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
             <Button
               onClick={handleBooking}
               disabled={!(bookingFullName && bookingEmail && bookingPhone)}
