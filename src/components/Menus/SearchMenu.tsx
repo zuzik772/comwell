@@ -95,19 +95,12 @@ export const SearchMenu: FC = () => {
         }),
       }
     );
-    // console.log(bookingFullName);
-    console.log(await response.json());
-    // console.log(bookingEmail);
 
     if (!response.ok)
       return alert(
-        "An error occured while booking rooms (Server responded with an error))"
+        "An error occured while booking rooms (Server responded with an error)"
       );
-
-    const bookingConfirmation: { success: boolean; error: null | string } =
-      await response.json();
-
-    if (bookingConfirmation.success) setSelectedSubMenu("bookingSuccess");
+    else setSelectedSubMenu("bookingSuccess");
   };
 
   return (
