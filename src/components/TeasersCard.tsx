@@ -20,7 +20,7 @@ export const TeasersCard = ({
       style={{
         backgroundImage: `url("${imageUrl}")`,
       }}
-      className="bg-cover w-[416px] h-[590px] rounded-lg"
+      className="bg-cover max-w-sm w-[416px] h-[590px] rounded-xl"
     >
       <div className=" flex flex-col justify-end text-white h-full   ">
         <span className="mb-auto w-fit bg-white text-black font-semibold uppercase text-xs px-2 py-0.5 rounded-2xl ml-4 mt-4">
