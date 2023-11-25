@@ -10,7 +10,7 @@ export const AmenitiesList: FC<{ room: Room }> = ({ room }) => {
   //HERE ROOM IS ACTUALLY A HOTEL
 
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex gap-2 flex-wrap text-xs">
       {/* Since double beds are not in the amenity list but should still be shown there, a custom check has been implemented here */}
       {room.beds.double ? (
         <div className="flex items-center gap-2">
