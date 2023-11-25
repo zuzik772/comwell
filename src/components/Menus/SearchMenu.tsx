@@ -18,6 +18,7 @@ export const SearchMenu: FC = () => {
 
   const selectedHotel = useHotelSearchStore((state) => state.hotel);
   const selectedDates = useHotelSearchStore((state) => state.dates);
+  const searchedRooms = useHotelSearchStore((state) => state.rooms);
 
   const selectedRoom = useSearchMenuControllerStore(
     (state) => state.searchMenuSelectedRoom
@@ -39,84 +40,98 @@ export const SearchMenu: FC = () => {
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);
-    // fetch("/api/availableRooms")
-    //   .then((res) => res.json())
-    //   .then((data) => setAvailableRooms(data));
+    const searchUrl = new URL(`http://localhost:3000/hotels/${selectedHotel}`);
 
-    setTimeout(() => {
-      setAvailableRooms([
-        {
-          name: "Room 1",
-          description: "Room 1 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 2,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "HAIRDRYER"],
-        },
-        {
-          name: "Room 2",
-          description: "Room 2 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 3,
-            double: 0,
-          },
-          amenities: ["TV", "WIFI", "WORKSPACE"],
-        },
-        {
-          name: "Room 3",
-          description: "Room 3 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 0,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "IRON"],
-        },
-        {
-          name: "Room 4",
-          description: "Room 4 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 1,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "ROOMSERVICE"],
-        },
-        {
-          name: "Room 5",
-          description: "Room 5 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 1,
-            double: 0,
-          },
-          amenities: ["TV", "WIFI"],
-        },
-      ]);
-    }, 2000);
+    searchUrl.searchParams.append("adults", searchedRooms[0].adults.toString());
+    searchUrl.searchParams.append("kids", searchedRooms[0].kids.toString());
+    searchUrl.searchParams.append(
+      "infants",
+      searchedRooms[0].infants.toString()
+    );
+    searchUrl.searchParams.append(
+      "checkIn",
+      selectedDates.startDate.toString()
+    );
+    searchUrl.searchParams.append("checkOut", selectedDates.endDate.toString());
+
+    fetch(searchUrl.href)
+      .then((res) => res.json())
+      .then((data) => setAvailableRooms(data));
+
+    // setTimeout(() => {
+    //   setAvailableRooms([
+    //     {
+    //       name: "Room 1",
+    //       description: "Room 1 description",
+    //       pictures: [
+    //         "https://picsum.photos/1000",
+    //         "https://picsum.photos/1001",
+    //         "https://picsum.photos/1002",
+    //       ],
+    //       beds: {
+    //         single: 2,
+    //         double: 1,
+    //       },
+    //       amenities: ["TV", "WIFI", "HAIRDRYER"],
+    //     },
+    //     {
+    //       name: "Room 2",
+    //       description: "Room 2 description",
+    //       pictures: [
+    //         "https://picsum.photos/1000",
+    //         "https://picsum.photos/1001",
+    //         "https://picsum.photos/1002",
+    //       ],
+    //       beds: {
+    //         single: 3,
+    //         double: 0,
+    //       },
+    //       amenities: ["TV", "WIFI", "WORKSPACE"],
+    //     },
+    //     {
+    //       name: "Room 3",
+    //       description: "Room 3 description",
+    //       pictures: [
+    //         "https://picsum.photos/1000",
+    //         "https://picsum.photos/1001",
+    //         "https://picsum.photos/1002",
+    //       ],
+    //       beds: {
+    //         single: 0,
+    //         double: 1,
+    //       },
+    //       amenities: ["TV", "WIFI", "IRON"],
+    //     },
+    //     {
+    //       name: "Room 4",
+    //       description: "Room 4 description",
+    //       pictures: [
+    //         "https://picsum.photos/1000",
+    //         "https://picsum.photos/1001",
+    //         "https://picsum.photos/1002",
+    //       ],
+    //       beds: {
+    //         single: 1,
+    //         double: 1,
+    //       },
+    //       amenities: ["TV", "WIFI", "ROOMSERVICE"],
+    //     },
+    //     {
+    //       name: "Room 5",
+    //       description: "Room 5 description",
+    //       pictures: [
+    //         "https://picsum.photos/1000",
+    //         "https://picsum.photos/1001",
+    //         "https://picsum.photos/1002",
+    //       ],
+    //       beds: {
+    //         single: 1,
+    //         double: 0,
+    //       },
+    //       amenities: ["TV", "WIFI"],
+    //     },
+    //   ]);
+    // }, 2000);
   }, [openMenus]);
 
   const handleBooking = async () => {
