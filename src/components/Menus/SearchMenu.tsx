@@ -6,10 +6,12 @@ import { LoadingSpinner } from "../LoadingSpinner";
 import { RoomShowcaseCard } from "../RoomShowcaseCard";
 import { AmenitiesList } from "../AmenitiesList";
 import { Button } from "../Button";
-import { BiArrowBack, BiCheck, BiCheckCircle } from "react-icons/bi";
+import { BiArrowBack, BiCheckCircle } from "react-icons/bi";
 import { useSearchMenuControllerStore } from "@/stores/searchMenuControllerStore";
 import { Input } from "../Input";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
+import { getTokenInfo } from "@/services/getTokenInfo";
+import { useLoginManagerStore } from "@/stores/loginManagerStore";
 
 export const SearchMenu: FC = () => {
   const [availableRooms, setAvailableRooms] = useState<Room[]>([]);
@@ -36,7 +38,19 @@ export const SearchMenu: FC = () => {
 
   const [bookingFullName, setBookingFullName] = useState<string>("");
   const [bookingEmail, setBookingEmail] = useState<string>("");
-  const [bookingPhone, setBookingPhone] = useState<string>("");
+  const [bookingPhone, setBookingPhone] = useState<number | null>(null);
+
+  const token = useLoginManagerStore((state) => state.token);
+
+  useEffect(() => {
+    const tokenInfo = getTokenInfo(token);
+
+    if (token) {
+      setBookingFullName(tokenInfo.fullName);
+      setBookingEmail(tokenInfo.email);
+      setBookingPhone(tokenInfo.phone || null);
+    }
+  }, []);
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);
@@ -57,81 +71,6 @@ export const SearchMenu: FC = () => {
     fetch(searchUrl.href)
       .then((res) => res.json())
       .then((data) => setAvailableRooms(data));
-
-    // setTimeout(() => {
-    //   setAvailableRooms([
-    //     {
-    //       name: "Room 1",
-    //       description: "Room 1 description",
-    //       pictures: [
-    //         "https://picsum.photos/1000",
-    //         "https://picsum.photos/1001",
-    //         "https://picsum.photos/1002",
-    //       ],
-    //       beds: {
-    //         single: 2,
-    //         double: 1,
-    //       },
-    //       amenities: ["TV", "WIFI", "HAIRDRYER"],
-    //     },
-    //     {
-    //       name: "Room 2",
-    //       description: "Room 2 description",
-    //       pictures: [
-    //         "https://picsum.photos/1000",
-    //         "https://picsum.photos/1001",
-    //         "https://picsum.photos/1002",
-    //       ],
-    //       beds: {
-    //         single: 3,
-    //         double: 0,
-    //       },
-    //       amenities: ["TV", "WIFI", "WORKSPACE"],
-    //     },
-    //     {
-    //       name: "Room 3",
-    //       description: "Room 3 description",
-    //       pictures: [
-    //         "https://picsum.photos/1000",
-    //         "https://picsum.photos/1001",
-    //         "https://picsum.photos/1002",
-    //       ],
-    //       beds: {
-    //         single: 0,
-    //         double: 1,
-    //       },
-    //       amenities: ["TV", "WIFI", "IRON"],
-    //     },
-    //     {
-    //       name: "Room 4",
-    //       description: "Room 4 description",
-    //       pictures: [
-    //         "https://picsum.photos/1000",
-    //         "https://picsum.photos/1001",
-    //         "https://picsum.photos/1002",
-    //       ],
-    //       beds: {
-    //         single: 1,
-    //         double: 1,
-    //       },
-    //       amenities: ["TV", "WIFI", "ROOMSERVICE"],
-    //     },
-    //     {
-    //       name: "Room 5",
-    //       description: "Room 5 description",
-    //       pictures: [
-    //         "https://picsum.photos/1000",
-    //         "https://picsum.photos/1001",
-    //         "https://picsum.photos/1002",
-    //       ],
-    //       beds: {
-    //         single: 1,
-    //         double: 0,
-    //       },
-    //       amenities: ["TV", "WIFI"],
-    //     },
-    //   ]);
-    // }, 2000);
   }, [openMenus]);
 
   const handleBooking = async () => {
@@ -212,6 +151,7 @@ export const SearchMenu: FC = () => {
             <section className="flex w-full h-64s items-center gap-4 overflow-auto">
               {selectedRoom?.pictures.map((picture) => (
                 <img
+                  key={picture}
                   src={picture}
                   className="aspect-video h-64 object-cover object-center rounded-xl"
                   alt={selectedRoom.name}
@@ -246,16 +186,21 @@ export const SearchMenu: FC = () => {
               <h3>Guest Information</h3>
               <Input
                 placeholder="Full name"
+                value={bookingFullName}
                 onChange={(event) => setBookingFullName(event.target.value)}
               />
               <Input
                 placeholder="Email"
+                value={bookingEmail}
                 type="email"
                 onChange={(event) => setBookingEmail(event.target.value)}
               />
               <Input
                 placeholder="Phone"
-                onChange={(event) => setBookingPhone(event.target.value)}
+                value={bookingPhone || ""}
+                onChange={(event) =>
+                  setBookingPhone(Number(event.target.value))
+                }
               />
             </section>
             <section className="w-2/5 h-full p-4 flex flex-col gap-4 bg-gray-100">
