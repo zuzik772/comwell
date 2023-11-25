@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, MouseEvent } from "react";
 import { Input } from "./Input";
 import { TextLink } from "./TextLink";
 import { Button } from "./Button";
@@ -9,9 +9,23 @@ export const ProfilePopup: FC = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleLogin = async () => {
+  const handleLogin = async (
+    event: MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     // TODO: Login logic - Will be handled on seperate branch
+
+    const response = await fetch("http://localhost:3000/auth/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const result = await response.json();
+    if (result.status === "Success") {
+      localStorage.setItem("jwtToken", result.token);
+    } else {
+      alert(result.error);
+    }
   };
 
   return (
