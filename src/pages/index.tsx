@@ -23,7 +23,6 @@ const Home = () => {
   const participants = useHotelSearchStore((state) => state.participants);
   const times = useHotelSearchStore((state) => state.times);
   const event = useHotelSearchStore((state) => state.event);
-
   // Opens a new menu
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 

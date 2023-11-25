@@ -6,6 +6,9 @@ import { PiFanBold } from "react-icons/pi";
 
 export const AmenitiesList: FC<{ room: Room }> = ({ room }) => {
   // Gets all amenities from a room and returns a list of icons and text
+
+  //HERE ROOM IS ACTUALLY A HOTEL
+
   return (
     <div className="flex gap-2 flex-wrap">
       {/* Since double beds are not in the amenity list but should still be shown there, a custom check has been implemented here */}
@@ -17,7 +20,7 @@ export const AmenitiesList: FC<{ room: Room }> = ({ room }) => {
       ) : null}
       {/* Mapping through all amenities */}
       {room.amenities.map((amenity) => (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" key={amenity}>
           {amenity === "TV" ? (
             <>
               <BiTv className="inline-block" />

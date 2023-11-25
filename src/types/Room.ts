@@ -8,6 +8,7 @@ export type Amenities =
 
 export type Room = {
   name: string;
+  number: number;
   description: string;
   pictures: string[];
   beds: {
