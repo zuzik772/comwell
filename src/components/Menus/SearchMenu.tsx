@@ -76,38 +76,38 @@ export const SearchMenu: FC = () => {
   const handleBooking = async () => {
     // Placeholder API call to book room (not implemented yet)
 
-    // const response = await fetch("/api/bookRoom", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     hotel: {
-    //       hotelName: selectedHotel,
-    //       rooms: [selectedRoom], //TODO: Support booking multiple rooms
-    //       dates: selectedDates,
-    //     },
-    //     customerInfo: {
-    //       fullName: bookingFullName,
-    //       email: bookingEmail,
-    //       phone: bookingPhone,
-    //     },
-    //   }),
-    // });
+    const response = await fetch(
+      "http://localhost:3000/bookings/create-booking",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          hotel: {
+            hotelName: selectedHotel,
+            rooms: [selectedRoom], //TODO: Support booking multiple rooms
+            dates: selectedDates,
+          },
+          customerInfo: {
+            fullName: bookingFullName,
+            email: bookingEmail,
+            phone: bookingPhone,
+          },
+        }),
+      }
+    );
+    // console.log(bookingFullName);
+    console.log(await response.json());
+    // console.log(bookingEmail);
 
-    // if (!response.ok)
-    //   return alert(
-    //     "An error occured while booking rooms (Server responded with an error))"
-    //   );
+    if (!response.ok)
+      return alert(
+        "An error occured while booking rooms (Server responded with an error))"
+      );
 
-    // const bookingConfirmation: { success: boolean; error: null | string } =
-    //   await response.json();
+    const bookingConfirmation: { success: boolean; error: null | string } =
+      await response.json();
 
-    // if (bookingConfirmation.success) setSelectedSubMenu("bookingSuccess");
-    // else
-    //   alert(
-    //     `An error occured while trying to book your rooms, please try again later. Error code: ${bookingConfirmation.error}`
-    //   );
-
-    // Demo while API is not implemented
-    setSelectedSubMenu("bookingSuccess");
+    if (bookingConfirmation.success) setSelectedSubMenu("bookingSuccess");
   };
 
   return (
