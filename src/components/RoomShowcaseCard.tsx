@@ -19,7 +19,7 @@ export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
       <section className="w-1/2 h-full">
         <img
           className="w-full h-full object-cover object-center"
-          src={"get me image"}
+          src={room.pictures[0]}
           alt={room.name}
         />
       </section>
