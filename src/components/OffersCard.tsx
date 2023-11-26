@@ -30,7 +30,7 @@ export const OffersCard = ({
         width={384}
         height={384}
         className="rounded-t-xl"
-      ></Image>
+      />
       <div className="p-4 flex grow flex-col gap-2 justify-between border-2 border-solid border-gray-300 rounded-xl">
         <div>
           <OffersCardLabel label={label} labelDesc={labelDesc} />

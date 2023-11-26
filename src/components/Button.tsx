@@ -14,7 +14,7 @@ export const Button: FC<ButtonProps> = ({
   children,
 }) => {
   return (
-    <div className={`flex justify-center w-full`}>
+    <div className="flex justify-center w-full">
       <button
         className={`bg-primary text-white py-4 px-20 rounded-full font-semibold hover:brightness-110 duration-200 flex justify-center items-center gap-2 ${
           fullWidth && "w-full"

@@ -74,8 +74,6 @@ export const SearchMenu: FC = () => {
   }, [openMenus]);
 
   const handleBooking = async () => {
-    // Placeholder API call to book room (not implemented yet)
-
     const response = await fetch(
       "http://localhost:3000/bookings/create-booking",
       {
@@ -84,7 +82,7 @@ export const SearchMenu: FC = () => {
         body: JSON.stringify({
           hotel: {
             hotelName: selectedHotel,
-            rooms: [selectedRoom], //TODO: Support booking multiple rooms
+            rooms: [selectedRoom],
             dates: selectedDates,
           },
           customerInfo: {

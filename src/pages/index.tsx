@@ -25,6 +25,7 @@ const Home = () => {
   const participants = useHotelSearchStore((state) => state.participants);
   const times = useHotelSearchStore((state) => state.times);
   const event = useHotelSearchStore((state) => state.event);
+
   // Opens a new menu
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
 
@@ -214,7 +215,6 @@ const Home = () => {
           className="absolute top-0 left-0 w-full h-full object-cover -z-10 "
         />
       </section>
-      <section>{/* <RelatedDeals></RelatedDeals> */}</section>
       <section className="flex flex-col items-center p-10">
         <SectionHeading heading="Offers & Experiences" />
         <div className="flex gap-16">
