@@ -5,4 +5,5 @@ type MenuNames =
   | "locations"
   | "profile"
   | "search"
-  | "mainMenu";
+  | "mainMenu"
+  | "register";

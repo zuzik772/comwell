@@ -20,7 +20,6 @@ export const RoomMenuRow: FC<RoomMenuRowProps> = ({
 }) => {
   const rooms = useHotelSearchStore((state) => state.rooms);
   const setRooms = useHotelSearchStore((state) => state.setRooms);
-
   // Resolves entering a number and clicking the plus and minus buttons next to it
   const handleRoomInput = (settings: {
     method: "plus" | "minus" | "set";

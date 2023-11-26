@@ -6,10 +6,12 @@ import { LoadingSpinner } from "../LoadingSpinner";
 import { RoomShowcaseCard } from "../RoomShowcaseCard";
 import { AmenitiesList } from "../AmenitiesList";
 import { Button } from "../Button";
-import { BiArrowBack, BiCheck, BiCheckCircle } from "react-icons/bi";
+import { BiArrowBack, BiCheckCircle } from "react-icons/bi";
 import { useSearchMenuControllerStore } from "@/stores/searchMenuControllerStore";
 import { Input } from "../Input";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
+import { getTokenInfo } from "@/services/getTokenInfo";
+import { useLoginManagerStore } from "@/stores/loginManagerStore";
 
 export const SearchMenu: FC = () => {
   const [availableRooms, setAvailableRooms] = useState<Room[]>([]);
@@ -18,6 +20,7 @@ export const SearchMenu: FC = () => {
 
   const selectedHotel = useHotelSearchStore((state) => state.hotel);
   const selectedDates = useHotelSearchStore((state) => state.dates);
+  const searchedRooms = useHotelSearchStore((state) => state.rooms);
 
   const selectedRoom = useSearchMenuControllerStore(
     (state) => state.searchMenuSelectedRoom
@@ -35,125 +38,67 @@ export const SearchMenu: FC = () => {
 
   const [bookingFullName, setBookingFullName] = useState<string>("");
   const [bookingEmail, setBookingEmail] = useState<string>("");
-  const [bookingPhone, setBookingPhone] = useState<string>("");
+  const [bookingPhone, setBookingPhone] = useState<number | null>(null);
+
+  const token = useLoginManagerStore((state) => state.token);
+
+  useEffect(() => {
+    const tokenInfo = getTokenInfo(token);
+
+    if (token) {
+      setBookingFullName(tokenInfo.fullName);
+      setBookingEmail(tokenInfo.email);
+      setBookingPhone(tokenInfo.phone || null);
+    }
+  }, []);
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);
-    // fetch("/api/availableRooms")
-    //   .then((res) => res.json())
-    //   .then((data) => setAvailableRooms(data));
+    const searchUrl = new URL(`http://localhost:3000/hotels/${selectedHotel}`);
 
-    setTimeout(() => {
-      setAvailableRooms([
-        {
-          name: "Room 1",
-          description: "Room 1 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 2,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "HAIRDRYER"],
-        },
-        {
-          name: "Room 2",
-          description: "Room 2 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 3,
-            double: 0,
-          },
-          amenities: ["TV", "WIFI", "WORKSPACE"],
-        },
-        {
-          name: "Room 3",
-          description: "Room 3 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 0,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "IRON"],
-        },
-        {
-          name: "Room 4",
-          description: "Room 4 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 1,
-            double: 1,
-          },
-          amenities: ["TV", "WIFI", "ROOMSERVICE"],
-        },
-        {
-          name: "Room 5",
-          description: "Room 5 description",
-          pictures: [
-            "https://picsum.photos/1000",
-            "https://picsum.photos/1001",
-            "https://picsum.photos/1002",
-          ],
-          beds: {
-            single: 1,
-            double: 0,
-          },
-          amenities: ["TV", "WIFI"],
-        },
-      ]);
-    }, 2000);
+    searchUrl.searchParams.append("adults", searchedRooms[0].adults.toString());
+    searchUrl.searchParams.append("kids", searchedRooms[0].kids.toString());
+    searchUrl.searchParams.append(
+      "infants",
+      searchedRooms[0].infants.toString()
+    );
+    searchUrl.searchParams.append(
+      "checkIn",
+      selectedDates.startDate.toString()
+    );
+    searchUrl.searchParams.append("checkOut", selectedDates.endDate.toString());
+
+    fetch(searchUrl.href)
+      .then((res) => res.json())
+      .then((data) => setAvailableRooms(data));
   }, [openMenus]);
 
   const handleBooking = async () => {
-    // Placeholder API call to book room (not implemented yet)
+    const response = await fetch(
+      "http://localhost:3000/bookings/create-booking",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          hotel: {
+            hotelName: selectedHotel,
+            rooms: [selectedRoom],
+            dates: selectedDates,
+          },
+          customerInfo: {
+            fullName: bookingFullName,
+            email: bookingEmail,
+            phone: bookingPhone,
+          },
+        }),
+      }
+    );
 
-    // const response = await fetch("/api/bookRoom", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     hotel: {
-    //       hotelName: selectedHotel,
-    //       rooms: [selectedRoom], //TODO: Support booking multiple rooms
-    //       dates: selectedDates,
-    //     },
-    //     customerInfo: {
-    //       fullName: bookingFullName,
-    //       email: bookingEmail,
-    //       phone: bookingPhone,
-    //     },
-    //   }),
-    // });
-
-    // if (!response.ok)
-    //   return alert(
-    //     "An error occured while booking rooms (Server responded with an error))"
-    //   );
-
-    // const bookingConfirmation: { success: boolean; error: null | string } =
-    //   await response.json();
-
-    // if (bookingConfirmation.success) setSelectedSubMenu("bookingSuccess");
-    // else
-    //   alert(
-    //     `An error occured while trying to book your rooms, please try again later. Error code: ${bookingConfirmation.error}`
-    //   );
-
-    // Demo while API is not implemented
-    setSelectedSubMenu("bookingSuccess");
+    if (!response.ok)
+      return alert(
+        "An error occured while booking rooms (Server responded with an error)"
+      );
+    else setSelectedSubMenu("bookingSuccess");
   };
 
   return (
@@ -197,6 +142,7 @@ export const SearchMenu: FC = () => {
             <section className="flex w-full h-64s items-center gap-4 overflow-auto">
               {selectedRoom?.pictures.map((picture) => (
                 <img
+                  key={picture}
                   src={picture}
                   className="aspect-video h-64 object-cover object-center rounded-xl"
                   alt={selectedRoom.name}
@@ -231,16 +177,21 @@ export const SearchMenu: FC = () => {
               <h3>Guest Information</h3>
               <Input
                 placeholder="Full name"
+                value={bookingFullName}
                 onChange={(event) => setBookingFullName(event.target.value)}
               />
               <Input
                 placeholder="Email"
+                value={bookingEmail}
                 type="email"
                 onChange={(event) => setBookingEmail(event.target.value)}
               />
               <Input
                 placeholder="Phone"
-                onChange={(event) => setBookingPhone(event.target.value)}
+                value={bookingPhone || ""}
+                onChange={(event) =>
+                  setBookingPhone(Number(event.target.value))
+                }
               />
             </section>
             <section className="w-2/5 h-full p-4 flex flex-col gap-4 bg-gray-100">
@@ -256,7 +207,7 @@ export const SearchMenu: FC = () => {
                 </div>
                 <div className="flex justify-center flex-col">
                   <p className="font-semibold text-lg">{selectedRoom?.name}</p>
-                  <p className="text-gray-500 font-medium text-sm flex-wrap">
+                  <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
                     {selectedRoom?.description}
                   </p>
                 </div>
@@ -304,7 +255,7 @@ export const SearchMenu: FC = () => {
                 <div className="w-full h-16 flex gap-2">
                   <div className="flex items-center">
                     <img
-                      className="h-12 w-16 rounded-lg object-cover object-center"
+                      className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
                       src={selectedRoom?.pictures[0]}
                       alt={selectedRoom?.name}
                     />
@@ -313,7 +264,7 @@ export const SearchMenu: FC = () => {
                     <p className="font-semibold text-lg">
                       {selectedRoom?.name}
                     </p>
-                    <p className="text-gray-500 font-medium text-sm flex-wrap">
+                    <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
                       {selectedRoom?.description}
                     </p>
                   </div>

@@ -13,7 +13,7 @@ export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
 }) => {
   return (
     <div
-      className="flex min-h-[14rem] h-full rounded-lg border border-gray-300 cursor-pointer"
+      className="flex h-56 rounded-lg border border-gray-300 cursor-pointer"
       onClick={onClick}
     >
       <section className="w-1/2 h-full">
@@ -23,11 +23,13 @@ export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
           alt={room.name}
         />
       </section>
-      <section className="w-1/3 h-full flex flex-col p-4">
+      <section className="w-1/3 h-full flex flex-col p-4 relative gap-2">
         <p className="text-2xl font-semibold">{room.name}</p>
-        <p className="text-sm">{room.description}</p>
+        <p className="text-sm overflow-hidden line-clamp-2 ">
+          {room.description}
+        </p>
         <AmenitiesList room={room} />
-        <h2 className="h-full flex items-end">PRICE</h2>
+        <h2 className="absolute bottom-0">PRICE</h2>
       </section>
     </div>
   );
