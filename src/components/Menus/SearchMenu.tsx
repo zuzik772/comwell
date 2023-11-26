@@ -209,7 +209,7 @@ export const SearchMenu: FC = () => {
                 </div>
                 <div className="flex justify-center flex-col">
                   <p className="font-semibold text-lg">{selectedRoom?.name}</p>
-                  <p className="text-gray-500 font-medium text-sm flex-wrap">
+                  <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
                     {selectedRoom?.description}
                   </p>
                 </div>
@@ -257,7 +257,7 @@ export const SearchMenu: FC = () => {
                 <div className="w-full h-16 flex gap-2">
                   <div className="flex items-center">
                     <img
-                      className="h-12 w-16 rounded-lg object-cover object-center"
+                      className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
                       src={selectedRoom?.pictures[0]}
                       alt={selectedRoom?.name}
                     />
@@ -266,7 +266,7 @@ export const SearchMenu: FC = () => {
                     <p className="font-semibold text-lg">
                       {selectedRoom?.name}
                     </p>
-                    <p className="text-gray-500 font-medium text-sm flex-wrap">
+                    <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
                       {selectedRoom?.description}
                     </p>
                   </div>
