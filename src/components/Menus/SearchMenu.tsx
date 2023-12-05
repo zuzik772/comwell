@@ -43,14 +43,26 @@ export const SearchMenu: FC = () => {
   const token = useLoginManagerStore((state) => state.token);
 
   useEffect(() => {
-    const tokenInfo = getTokenInfo(token);
+    //fetchTokenInfo async function helps fill and clear the fields depending on the state of the token while avoiding refreshing
+    const fetchTokenInfo = async () => {
+      try {
+        const tokenInfo = await getTokenInfo(token);
 
-    if (token) {
-      setBookingFullName(tokenInfo.fullName);
-      setBookingEmail(tokenInfo.email);
-      setBookingPhone(tokenInfo.phone || null);
-    }
-  }, []);
+        if (token) {
+          setBookingFullName(tokenInfo.fullName);
+          setBookingEmail(tokenInfo.email);
+          setBookingPhone(tokenInfo.phone || null);
+        } else {
+          setBookingFullName("");
+          setBookingEmail("");
+          setBookingPhone(null);
+        }
+      } catch (error) {
+        console.error("Error fetching token information:", error);
+      }
+    };
+    fetchTokenInfo();
+  }, [token]);
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);
