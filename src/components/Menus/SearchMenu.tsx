@@ -49,8 +49,12 @@ export const SearchMenu: FC = () => {
       setBookingFullName(tokenInfo.fullName);
       setBookingEmail(tokenInfo.email);
       setBookingPhone(tokenInfo.phone || null);
+    } else {
+      setBookingFullName("");
+      setBookingEmail("");
+      setBookingPhone(null);
     }
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);

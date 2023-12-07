@@ -34,8 +34,8 @@ export const RoomMenuRow: FC<RoomMenuRowProps> = ({
     else newRooms[settings.index][type] = settings.value || 0;
 
     // Clamp values between 0 and 9
-    if (newRooms[settings.index][type] > 9) newRooms[settings.index][type] = 9;
-    if (newRooms[settings.index][type] < 0) newRooms[settings.index][type] = 0;
+    // if (newRooms[settings.index][type] > 9) newRooms[settings.index][type] = 9;
+    // if (newRooms[settings.index][type] < 0) newRooms[settings.index][type] = 0;
     setRooms(newRooms);
   };
 
@@ -59,6 +59,7 @@ export const RoomMenuRow: FC<RoomMenuRowProps> = ({
         </div>
         <RoundedInput
           value={room[type]}
+          max={9}
           onChange={(value) =>
             handleRoomInput({
               method: "set",

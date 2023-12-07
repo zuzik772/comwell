@@ -110,7 +110,7 @@ const Home = () => {
                     type="text"
                     title="Amount of participants"
                     value={participants}
-                    onClick={() => alert("Participants Dropdown Clicked")}
+                    onClick={() => addOpenMenu("participants")}
                   />
                   <Dropdown
                     type="hotel"
