@@ -110,7 +110,7 @@ const Home = () => {
                     type="text"
                     title="Amount of participants"
                     value={participants}
-                    onClick={() => alert("Participants Dropdown Clicked")}
+                    onClick={() => addOpenMenu("participants")}
                   />
                   <Dropdown
                     type="hotel"
@@ -129,14 +129,13 @@ const Home = () => {
                       type="time"
                       title="Start"
                       value={times.startTime}
-                      onClick={() => alert("Start Dropdown Clicked")}
+                      onClick={() => addOpenMenu("start-time")}
                       small
                     />
                     <Dropdown
                       type="time"
                       title="End"
-                      value={times.endTime}
-                      onClick={() => alert("End Dropdown Clicked")}
+                      onClick={() => addOpenMenu("end-time")}
                       small
                     />
                   </div>

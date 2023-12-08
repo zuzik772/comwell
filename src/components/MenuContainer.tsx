@@ -5,6 +5,8 @@ import { RoomsMenu } from "./Menus/RoomsMenu";
 import { DatePickerMenu } from "./Menus/DatePickerMenu";
 import { SearchMenu } from "./Menus/SearchMenu";
 import { RegisterMenu } from "./Menus/RegisterMenu";
+import { ParticipantsMenu } from "./Menus/ParticipantsMenu";
+import { StartTimeMenu, EndTimeMenu } from "./Menus/TimeMenu";
 
 export const MenuContainer: FC = () => {
   // Contains all the sliding menus that can be opened
@@ -15,7 +17,9 @@ export const MenuContainer: FC = () => {
       <DatePickerMenu />
       <RegisterMenu />
       <SearchMenu />
-
+      <ParticipantsMenu />
+      <StartTimeMenu />
+      <EndTimeMenu />
       <BackgroundDim />
     </>
   );
