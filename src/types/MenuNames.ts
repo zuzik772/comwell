@@ -7,4 +7,5 @@ type MenuNames =
   | "search"
   | "mainMenu"
   | "register"
-  | "participants";
+  | "participants"
+  | "times";
