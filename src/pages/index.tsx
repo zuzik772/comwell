@@ -128,20 +128,21 @@ const Home = () => {
                     <Dropdown
                       type="time"
                       title="Start"
-                      value={times.startTime}
-                      onClick={() => addOpenMenu("start-time")}
+                      value={times.startTime} // These should be the clicked time
+                      onClick={() => addOpenMenu("startTime")}
                       small
                     />
                     <Dropdown
                       type="time"
                       title="End"
-                      onClick={() => addOpenMenu("end-time")}
+                      value={times.endTime} // These should be the clicked time
+                      onClick={() => addOpenMenu("endTime")}
                       small
                     />
                   </div>
 
                   <Button
-                    onClick={() => alert("Request Button Clicked")}
+                    onClick={() => addOpenMenu("request")}
                     fullWidth
                     // Disable the button if any of the required fields are empty
                     disabled={

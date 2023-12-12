@@ -7,6 +7,7 @@ type MenuNames =
   | "search"
   | "mainMenu"
   | "participants"
-  | "start-time"
-  | "end-time"
+  | "startTime"
+  | "endTime"
+  | "request"
   | "register";
