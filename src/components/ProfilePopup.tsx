@@ -22,10 +22,7 @@ export const ProfilePopup: FC = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
+  const handleLogin = async () => {
     const response = await fetch("http://localhost:3000/auth/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,10 +33,7 @@ export const ProfilePopup: FC = () => {
     else alert(result.error);
   };
 
-  const handleLogout = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
+  const handleLogout = async () => {
     clearToken();
   };
 
@@ -71,7 +65,7 @@ export const ProfilePopup: FC = () => {
             <div className="text-sm text-gray-700 font-medium">
               <p>Forgot your password?</p>
               <TextLink onClick={() => null}>Reset password</TextLink>
-              <p>Don't have an account?</p>
+              <p>Do not have an account?</p>
               <TextLink
                 onClick={() => {
                   removeOpenMenu("profile");

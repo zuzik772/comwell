@@ -16,12 +16,9 @@ export const RegisterMenu: FC = () => {
   const setToken = useLoginManagerStore((state) => state.setToken);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
 
-  const handleRegister = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleRegister = async () => {
     if (password !== confirmPassword) return alert("Passwords do not match");
 
-    event.preventDefault();
     const response = await fetch("http://localhost:3000/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,7 +36,7 @@ export const RegisterMenu: FC = () => {
       <section className="flex flex-col gap-16">
         <p className="text-sm font-medium">
           Become a member of Comwell Club for free and earn points everytime you
-          stay with us. You'll also receive 25 points when you sign up
+          stay with us. You will also receive 25 points when you sign up
         </p>
         <div className="flex flex-col gap-4">
           <Input
@@ -81,7 +78,7 @@ export const RegisterMenu: FC = () => {
               password === confirmPassword && "hidden"
             }`}
           >
-            Passwords don't match!
+            Passwords do not match!
           </p>
         </div>
       </section>
