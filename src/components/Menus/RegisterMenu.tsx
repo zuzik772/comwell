@@ -16,12 +16,9 @@ export const RegisterMenu: FC = () => {
   const setToken = useLoginManagerStore((state) => state.setToken);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
 
-  const handleRegister = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleRegister = async () => {
     if (password !== confirmPassword) return alert("Passwords do not match");
 
-    event.preventDefault();
     const response = await fetch("http://localhost:3000/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

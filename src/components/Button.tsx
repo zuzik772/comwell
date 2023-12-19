@@ -1,7 +1,7 @@
 import { FC, ReactNode, MouseEvent } from "react";
 
 type ButtonProps = {
-  onClick?: (event: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: () => void;
   fullWidth?: boolean;
   disabled?: boolean;
   children?: ReactNode;
