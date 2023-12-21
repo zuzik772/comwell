@@ -11,7 +11,7 @@ export const DatePickerMenu: FC = () => {
       <div className="flex flex-col gap-4">
         {/* "Invalid date" banner if end date is before start date */}
         <section
-          className={`bg-red-400 rounded-lg text-white px-6 py-3 ${
+          className={`rounded-lg text-white px-6 py-3 ${
             dates.endDate > dates.startDate && "hidden"
           }`}
         >

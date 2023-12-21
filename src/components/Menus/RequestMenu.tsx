@@ -10,6 +10,7 @@ import { Button } from "../Button";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 import { FaSearch } from "react-icons/fa";
 import { Dropdown } from "../Dropdown";
+import { Input } from "../Input";
 
 export const RequestMenu: FC = () => {
   const [availableMeetingRooms, setAvailableMeetingRooms] = useState<
@@ -22,6 +23,13 @@ export const RequestMenu: FC = () => {
   const participants = useHotelSearchStore((state) => state.participants);
   const times = useHotelSearchStore((state) => state.times);
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
+  const [company, setCompany] = useState<string>("");
+  const [optionalDepartment, setOptionalDepartment] = useState<string>("");
+  const [optionalMeetingName, setOptionalMeetingName] = useState<string>("");
+  const [fullName, setFullName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [phone, setPhone] = useState<number | null>(null);
+  const [comment, setComment] = useState<string>("");
 
   const selectedMeetingRoom = useSearchMenuControllerStore(
     (state) => state.searchMenuSelectedMeetingRoom
@@ -142,8 +150,8 @@ export const RequestMenu: FC = () => {
       ) : selectedSubMenu === "meetingRoomBooking" ? (
         // booking: Customer booking information
         <>
-          <div className="flex flex-col h-full">
-            <section className="h-full p-4 flex flex-col gap-4">
+          <div className="flex flex-col">
+            <section className=" p-4 flex flex-col gap-4">
               <h3>My request</h3>
 
               <>
@@ -182,59 +190,59 @@ export const RequestMenu: FC = () => {
                   />
                 </div>
               </>
-
-              {/* <Input
-                placeholder="Full name"
-                value={bookingFullName}
-                onChange={(event) => setBookingFullName(event.target.value)}
+            </section>
+            <section className="p-4 flex flex-col gap-4">
+              <h3>Booker info</h3>
+              <Input
+                placeholder="Company"
+                value={company}
+                onChange={(event) => setCompany(event.target.value)}
               />
               <Input
-                placeholder="Email"
-                value={bookingEmail}
-                type="email"
-                onChange={(event) => setBookingEmail(event.target.value)}
+                placeholder="Optional department"
+                value={optionalDepartment}
+                onChange={(event) => setOptionalDepartment(event.target.value)}
               />
               <Input
                 placeholder="Phone"
-                value={bookingPhone || ""}
-                onChange={(event) =>
-                  setBookingPhone(Number(event.target.value))
-                }
-              /> */}
+                value={optionalMeetingName || ""}
+                onChange={(event) => setOptionalMeetingName(event.target.value)}
+              />
+
+              <Input
+                placeholder="Full name"
+                value={fullName}
+                onChange={(event) => setFullName(event.target.value)}
+              />
+              <Input
+                placeholder="Email"
+                value={email}
+                type="email"
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <Input
+                placeholder="Phone"
+                value={phone || ""}
+                onChange={(event) => setPhone(Number(event.target.value))}
+              />
             </section>
-            <section className="h-full p-4 flex flex-col gap-4 bg-gray-100">
-              <h3>Booker info</h3>
-              {/* TODO: Support booking multiple rooms */}
-              {/* <div className="w-full flex gap-2">
-                <div className="flex items-center">
-                  <img
-                    className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
-                    src={selectedRoom?.pictures[0]}
-                    alt={selectedRoom?.name}
-                  />
-                </div>
-                <div className="flex justify-center flex-col">
-                  <p className="font-semibold text-lg">{selectedRoom?.name}</p>
-                  <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
-                    {selectedRoom?.description}
-                  </p>
-                </div>
-                <div className="flex items-center">
-                  <p className="font-semibold text-lg whitespace-nowrap">
-                    999 kr.
-                  </p>
-                </div>
-              </div> */}
+            <section className="p-4 flex flex-col gap-4">
+              <h3>Comment</h3>
+              <Input
+                placeholder="Add optional comment"
+                value={comment}
+                onChange={(event) => setComment(event.target.value)}
+              />
             </section>
           </div>
-          <section className="absolute bottom-0 left-0 w-full h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
+          {/* <section className="absolute bottom-0 left-0 w-full h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
             <Button
               onClick={handleMeetingRoomBooking}
               // disabled={!(bookingFullName && bookingEmail && bookingPhone)}
             >
-              Book room
+              Send request
             </Button>
-          </section>
+          </section> */}
         </>
       ) : selectedSubMenu === "meetingRoomBookingSuccess" ? (
         // meetingRoomBookingSuccess: Meeting room Booking sucessfully confirmed
