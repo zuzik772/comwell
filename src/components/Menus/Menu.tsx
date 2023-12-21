@@ -36,7 +36,7 @@ export const Menu: FC<{
         </section>
         {children}
       </main>
-      <BackgroundDim layer={large ? "z-[99]" : "z-[109]"} />
+      {/* <BackgroundDim layer={large ? "z-[99]" : "z-[109]"} /> */}
     </>
   );
 };

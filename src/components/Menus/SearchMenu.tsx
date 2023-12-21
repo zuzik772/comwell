@@ -79,7 +79,7 @@ export const SearchMenu: FC = () => {
 
   const handleBooking = async () => {
     const response = await fetch(
-      "http://localhost:3001/bookings/create-booking",
+      "http://localhost:300/bookings/create-booking",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -158,7 +158,7 @@ export const SearchMenu: FC = () => {
               <section className="w-1/2">
                 <h2>{selectedRoom?.name}</h2>
               </section>
-              <section className="w-1/2 flex flex-col gap-8 bg-red-400">
+              <section className="w-1/2 flex flex-col gap-8">
                 {selectedRoom && <AmenitiesList room={selectedRoom} />}
                 {selectedRoom?.description}
               </section>
