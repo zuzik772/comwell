@@ -23,7 +23,6 @@ export const MenuContainer: FC = () => {
       <StartTimeMenu />
       <EndTimeMenu />
       <RequestMenu />
-      <BackgroundDim />
     </>
   );
 };

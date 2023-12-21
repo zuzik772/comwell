@@ -22,11 +22,8 @@ export const ProfilePopup: FC = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    const response = await fetch("http://localhost:3000/auth/signin", {
+  const handleLogin = async () => {
+    const response = await fetch("http://localhost:3001/auth/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -36,10 +33,7 @@ export const ProfilePopup: FC = () => {
     else alert(result.error);
   };
 
-  const handleLogout = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
+  const handleLogout = async () => {
     clearToken();
   };
 

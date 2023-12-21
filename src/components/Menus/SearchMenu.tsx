@@ -58,7 +58,7 @@ export const SearchMenu: FC = () => {
 
   useEffect(() => {
     if (!openMenus.includes("search")) return setAvailableRooms([]);
-    const searchUrl = new URL(`http://localhost:3000/hotels/${selectedHotel}`);
+    const searchUrl = new URL(`http://localhost:3001/hotels/${selectedHotel}`);
 
     searchUrl.searchParams.append("adults", searchedRooms[0].adults.toString());
     searchUrl.searchParams.append("kids", searchedRooms[0].kids.toString());
@@ -79,7 +79,7 @@ export const SearchMenu: FC = () => {
 
   const handleBooking = async () => {
     const response = await fetch(
-      "http://localhost:3000/bookings/create-booking",
+      "http://localhost:3001/bookings/create-booking",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -117,6 +117,7 @@ export const SearchMenu: FC = () => {
               <RoomShowcaseCard
                 room={room}
                 key={room.name}
+                price={999}
                 onClick={() => {
                   setSelectedRoom(room);
                   setSelectedSubMenu("roomInfo");
@@ -157,7 +158,7 @@ export const SearchMenu: FC = () => {
               <section className="w-1/2">
                 <h2>{selectedRoom?.name}</h2>
               </section>
-              <section className="w-1/2 flex flex-col gap-8">
+              <section className="w-1/2 flex flex-col gap-8 bg-red-400">
                 {selectedRoom && <AmenitiesList room={selectedRoom} />}
                 {selectedRoom?.description}
               </section>
@@ -165,7 +166,7 @@ export const SearchMenu: FC = () => {
             <section className="absolute bottom-0 left-0 w-full h-24 border-t border-gray-300 flex justify-between items-center px-4">
               <p>Overnight stay</p>
               <div className="flex gap-8 items-center">
-                <h2>PRICE</h2>
+                <h2 className="w-full">999 kr.</h2>
                 <Button onClick={() => setSelectedSubMenu("booking")}>
                   Continue
                 </Button>
@@ -201,10 +202,10 @@ export const SearchMenu: FC = () => {
             <section className="w-2/5 h-full p-4 flex flex-col gap-4 bg-gray-100">
               <h3>Overview</h3>
               {/* TODO: Support booking multiple rooms */}
-              <div className="w-full h-16 flex gap-2">
+              <div className="w-full flex gap-2">
                 <div className="flex items-center">
                   <img
-                    className="h-12 w-16 rounded-lg object-cover object-center"
+                    className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
                     src={selectedRoom?.pictures[0]}
                     alt={selectedRoom?.name}
                   />
@@ -216,7 +217,9 @@ export const SearchMenu: FC = () => {
                   </p>
                 </div>
                 <div className="flex items-center">
-                  <p className="font-semibold text-lg">PRICE</p>
+                  <p className="font-semibold text-lg whitespace-nowrap">
+                    999 kr.
+                  </p>
                 </div>
               </div>
             </section>

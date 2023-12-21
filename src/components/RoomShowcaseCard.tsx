@@ -4,11 +4,13 @@ import { AmenitiesList } from "./AmenitiesList";
 
 type RoomShowcaseCardProps = {
   room: Room;
+  price: number;
   onClick?: () => void;
 };
 
 export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
   room,
+  price,
   onClick,
 }) => {
   return (
@@ -29,7 +31,7 @@ export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
           {room.description}
         </p>
         <AmenitiesList room={room} />
-        <h2 className="absolute bottom-0">PRICE</h2>
+        <h2 className="absolute bottom-0 w-full">{price} kr.</h2>
       </section>
     </div>
   );

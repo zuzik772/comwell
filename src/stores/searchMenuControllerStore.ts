@@ -7,7 +7,9 @@ type SearchMenuSubMenus =
   | "roomInfo"
   | "booking"
   | "bookingSuccess"
-  | "meetingRoomInfo";
+  | "meetingRoomInfo"
+  | "meetingRoomBooking"
+  | "meetingRoomBookingSuccess";
 
 type SearchMenuController = {
   // Handles state of the selected room

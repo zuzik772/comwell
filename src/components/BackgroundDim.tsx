@@ -3,7 +3,11 @@ import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { useSearchMenuControllerStore } from "@/stores/searchMenuControllerStore";
 import { FC } from "react";
 
-export const BackgroundDim: FC = () => {
+type BackgroundDimProps = {
+  layer: "z-[99]" | "z-[109]";
+};
+
+export const BackgroundDim: FC<BackgroundDimProps> = ({ layer }) => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
 
@@ -21,8 +25,8 @@ export const BackgroundDim: FC = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-black z-50 duration-200 ${
-        openMenus.length ? "opacity-50" : "opacity-0 pointer-events-none"
+      className={`fixed top-0 left-0 w-full h-full bg-black duration-200 ${layer}${
+        openMenus.length ? "opacity-25" : "opacity-0 pointer-events-none"
       }`}
       onClick={() => {
         // Clicking the background closes all menus and resets all room related values

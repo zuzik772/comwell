@@ -1,6 +1,7 @@
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { FC, ReactNode } from "react";
 import { MdClose } from "react-icons/md";
+import { BackgroundDim } from "../BackgroundDim";
 
 export const Menu: FC<{
   title: string;
@@ -15,24 +16,27 @@ export const Menu: FC<{
 
   const open = openMenus.includes(name);
   return (
-    <main
-      className={`fixed ${
-        // Large menus are double the size of normal menus, and their closing animation differs to compoensate
-        large ? "w-[48rem]" : "w-96"
-      }  h-screen bg-white z-[100] px-4 py-6 flex flex-col gap-4 duration-300 overflow-auto ${
-        open ? "right-0" : large ? "-right-[48rem]" : "-right-96"
-      }`}
-    >
-      <section className="flex justify-between">
-        <h2>{title}</h2>
-        <div
-          className="cursor-pointer bg-secondary rounded-full p-1.5 h-fit"
-          onClick={() => removeOpenMenu(name)}
-        >
-          <MdClose className="text-xl" />
-        </div>
-      </section>
-      {children}
-    </main>
+    <>
+      <main
+        className={`fixed ${
+          // Large menus are double the size of normal menus, and their closing animation differs to compoensate
+          large ? "w-[48rem] z-[100]" : "w-96 z-[110]"
+        }  h-screen bg-white px-4 py-6 flex flex-col gap-4 duration-300 overflow-auto ${
+          open ? "right-0" : large ? "-right-[48rem]" : "-right-96"
+        }`}
+      >
+        <section className="flex justify-between">
+          <h2>{title}</h2>
+          <div
+            className="cursor-pointer bg-secondary rounded-full p-1.5 h-fit"
+            onClick={() => removeOpenMenu(name)}
+          >
+            <MdClose className="text-xl" />
+          </div>
+        </section>
+        {children}
+      </main>
+      <BackgroundDim layer={large ? "z-[99]" : "z-[109]"} />
+    </>
   );
 };
