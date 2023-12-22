@@ -79,7 +79,7 @@ export const SearchMenu: FC = () => {
 
   const handleBooking = async () => {
     const response = await fetch(
-      "http://localhost:300/bookings/create-booking",
+      "http://localhost:3001/bookings/create-booking",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -158,12 +158,12 @@ export const SearchMenu: FC = () => {
               <section className="w-1/2">
                 <h2>{selectedRoom?.name}</h2>
               </section>
-              <section className="w-1/2 flex flex-col gap-8">
+              <section className="w-1/2 flex flex-col gap-8 h-full overflow-y-auto pb-20">
                 {selectedRoom && <AmenitiesList room={selectedRoom} />}
                 {selectedRoom?.description}
               </section>
             </div>
-            <section className="absolute bottom-0 left-0 w-full h-24 border-t border-gray-300 flex justify-between items-center px-4">
+            <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t border-gray-300 flex justify-between items-center px-4 bg-white">
               <p>Overnight stay</p>
               <div className="flex gap-8 items-center">
                 <h2 className="w-full">999 kr.</h2>
@@ -259,7 +259,7 @@ export const SearchMenu: FC = () => {
               </div>
               <div className="bg-gray-100 w-1/2 h-full p-4">
                 <h3>Room Info</h3>
-                <div className="w-full h-16 flex gap-2">
+                <div className="w-full h-fit flex gap-2 pt-4">
                   <div className="flex items-center">
                     <img
                       className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
@@ -274,9 +274,8 @@ export const SearchMenu: FC = () => {
                     <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
                       {selectedRoom?.description}
                     </p>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="font-semibold text-lg">PRICE</p>
+
+                    <p className="font-semibold text-lg"> Total: 999 kr.</p>
                   </div>
                 </div>
               </div>

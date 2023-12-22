@@ -65,7 +65,7 @@ export const ProfilePopup: FC = () => {
             <div className="text-sm text-gray-700 font-medium">
               <p>Forgot your password?</p>
               <TextLink onClick={() => null}>Reset password</TextLink>
-              <p>Don't have an account?</p>
+              <p>Don&apos;t have an account?</p>
               <TextLink
                 onClick={() => {
                   removeOpenMenu("profile");

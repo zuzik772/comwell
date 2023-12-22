@@ -18,16 +18,16 @@ export const RoomShowcaseCard: FC<RoomShowcaseCardProps> = ({
       className="flex h-56 rounded-lg border border-gray-300 cursor-pointer"
       onClick={onClick}
     >
-      <section className="w-1/2 h-full">
+      <section className="relative w-full h-full">
         <img
           className="w-full h-full object-cover object-center"
           src={room.pictures[0]}
           alt={room.name}
         />
       </section>
-      <section className="w-1/3 h-full flex flex-col p-4 relative gap-2">
+      <section className="relative w-full h-full flex flex-col p-4 relative gap-2">
         <p className="text-2xl font-semibold">{room.name}</p>
-        <p className="text-sm overflow-hidden line-clamp-2 ">
+        <p className="text-xs overflow-hidden line-clamp-2 ">
           {room.description}
         </p>
         <AmenitiesList room={room} />

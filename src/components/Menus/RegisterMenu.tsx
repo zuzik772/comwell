@@ -36,7 +36,7 @@ export const RegisterMenu: FC = () => {
       <section className="flex flex-col gap-16">
         <p className="text-sm font-medium">
           Become a member of Comwell Club for free and earn points everytime you
-          stay with us. You'll also receive 25 points when you sign up
+          stay with us. You&apos;ll also receive 25 points when you sign up
         </p>
         <div className="flex flex-col gap-4">
           <Input
@@ -78,7 +78,7 @@ export const RegisterMenu: FC = () => {
               password === confirmPassword && "hidden"
             }`}
           >
-            Passwords don't match!
+            Passwords don&apos;t match!
           </p>
         </div>
       </section>

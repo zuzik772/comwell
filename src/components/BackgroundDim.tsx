@@ -6,13 +6,14 @@ import { FC } from "react";
 type BackgroundDimProps = {
   menu: MenuNames;
   style?: React.CSSProperties;
+};
 
-}
-
-export const BackgroundDim: FC<BackgroundDimProps> = ({menu, style}) => {
+export const BackgroundDim: FC<BackgroundDimProps> = ({ menu, style }) => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
-  const removeOpenMenu = useMenuControllerStore((state) => state.removeOpenMenu);
+  const removeOpenMenu = useMenuControllerStore(
+    (state) => state.removeOpenMenu
+  );
 
   const setForceNavbarVisible = useHeaderControllerStore(
     (state) => state.setForceNavbarVisible
@@ -28,12 +29,14 @@ export const BackgroundDim: FC<BackgroundDimProps> = ({menu, style}) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-black duration-200  ${
-        openMenus.includes(menu) ? "opacity-50" : "opacity-0 pointer-events-none"
+      className={`fixed top-0 left-0 w-full h-full bg-black duration-200 ${
+        openMenus.includes(menu)
+          ? "opacity-50"
+          : "opacity-0 pointer-events-none"
       }`}
       style={style}
       onClick={() => {
-        // Clicking the background closes the bound menu        
+        // Clicking the background closes the bound menu
         removeOpenMenu(menu);
 
         // Due to the update cycle not being instant we are listening for if there is one menu left open

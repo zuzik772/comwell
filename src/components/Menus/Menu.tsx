@@ -26,7 +26,7 @@ export const Menu: FC<{
           open ? "right-0" : large ? "-right-[48rem]" : "-right-96"
         }`}
         style={{
-          zIndex: 100 + (openMenus.indexOf(name)) * 2 + 1,
+          zIndex: 100 + openMenus.indexOf(name) * 2 + 1,
         }}
       >
         <section className="flex justify-between">
@@ -43,7 +43,7 @@ export const Menu: FC<{
       <BackgroundDim
         menu={name}
         style={{
-          zIndex: 100 + (openMenus.indexOf(name)) * 2
+          zIndex: 100 + openMenus.indexOf(name) * 2,
         }}
       />
     </>
