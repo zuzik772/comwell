@@ -23,6 +23,7 @@ export const RequestMenu: FC = () => {
   const participants = useHotelSearchStore((state) => state.participants);
   const times = useHotelSearchStore((state) => state.times);
   const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
+
   const [company, setCompany] = useState<string>("");
   const [optionalDepartment, setOptionalDepartment] = useState<string>("");
   const [optionalMeetingName, setOptionalMeetingName] = useState<string>("");
@@ -54,9 +55,9 @@ export const RequestMenu: FC = () => {
   }, [openMenus]);
 
   const handleMeetingRoomBooking = async () => {
-    console.log("Your meeting room has been booked");
+    // console.log("Your meeting room has been booked");
     // const response = await fetch(
-    //   "http://localhost:3001/bookings/meetingRoomBooking",
+    //   "http://localhost:3001/bookings/meeting-room-booking",
     //   {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
@@ -79,7 +80,8 @@ export const RequestMenu: FC = () => {
     //   return alert(
     //     "An error occured while booking rooms (Server responded with an error)"
     //   );
-    // else setSelectedSubMenu("meetingRoomBookingSuccess");
+    //else
+    setSelectedSubMenu("meetingRoomBookingSuccess");
   };
 
   return (
@@ -116,7 +118,7 @@ export const RequestMenu: FC = () => {
           >
             <BiArrowBack />
           </div>
-          <div className="flex flex-col gap-2 ">
+          <div className="flex flex-col gap-2">
             <img
               src="https://cdn.dwarf.dk/comwell-cms-production/img/containers/main/m%C3%B8der_konferencer/comwell_moede-og-konference41.jpg/636f34e0fcca9da5c8a8dde859a5bf2f.webp"
               alt="meeting room"
@@ -136,11 +138,6 @@ export const RequestMenu: FC = () => {
                     <li>{bulletPoint}</li>
                   ))}
                 </ul>
-                {/* <Button
-                  onClick={() => setSelectedSubMenu("meetingRoomBooking")}
-                >
-                  Continue
-                </Button> */}
               </section>
               <section className="fixed bottom-0 right-0 w-fit h-24 flex items-center px-4">
                 <Button
@@ -248,7 +245,7 @@ export const RequestMenu: FC = () => {
                 onChange={(event) => setComment(event.target.value)}
               />
             </section>
-            <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t border-gray-300 bg-white border-gray-300 flex justify-end items-center p-4">
+            <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t border-gray-300 bg-white flex justify-end items-center p-4">
               <Button
                 onClick={handleMeetingRoomBooking}
                 disabled={!(company && fullName && email && phone)}
@@ -267,37 +264,35 @@ export const RequestMenu: FC = () => {
           <section className="flex flex-col gap-4 h-full">
             <h1>Booking Confirmed</h1>
             <p className="text-xl">Your room has sucessfully been booked</p>
-            {/* <div className="flex w-full h-full">
+            <div className="flex w-full h-full">
               <div className="flex flex-col gap-2 w-1/2 h-full p-4">
                 <h3>Customer Info</h3>
                 <p>
-                  <span className="font-semibold">Name:</span> {bookingFullName}
+                  <span className="font-semibold">Name:</span> {fullName}
                 </p>
                 <p>
                   <span className="font-semibold">Email: </span>
-                  {bookingEmail}
+                  {email}
                 </p>
                 <p>
                   <span className="font-semibold">Phone: </span>
-                  {bookingPhone}
+                  {phone}
                 </p>
               </div>
               <div className="bg-gray-100 w-1/2 h-full p-4">
                 <h3>Room Info</h3>
                 <div className="w-full h-16 flex gap-2">
                   <div className="flex items-center">
-                    <img
+                    {/* <img
                       className="h-12  min-w-[4rem] w-16 rounded-lg object-cover object-center"
                       src={selectedRoom?.pictures[0]}
                       alt={selectedRoom?.name}
-                    />
+                    /> */}
                   </div>
                   <div className="flex justify-center flex-col">
-                    <p className="font-semibold text-lg">
-                      {selectedRoom?.name}
-                    </p>
+                    <p className="font-semibold text-lg">{selectedHotel}</p>
                     <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
-                      {selectedRoom?.description}
+                      {selectedHotel}
                     </p>
                   </div>
                   <div className="flex items-center">
@@ -305,7 +300,7 @@ export const RequestMenu: FC = () => {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
           </section>
         </>
       ) : null}

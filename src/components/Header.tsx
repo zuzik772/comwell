@@ -65,7 +65,7 @@ export const Header: FC = () => {
               className="flex items-center gap-2 cursor-pointer"
               onClick={() => {
                 addOpenMenu("profile");
-                // setForceNavbarVisible(true);
+                setForceNavbarVisible(true);
               }}
             >
               Profile <FaRegUser className="text-xl" />

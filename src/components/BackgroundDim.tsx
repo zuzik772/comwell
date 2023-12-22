@@ -6,9 +6,14 @@ import { FC } from "react";
 type BackgroundDimProps = {
   menu: MenuNames;
   style?: React.CSSProperties;
+  className?: string;
 };
 
-export const BackgroundDim: FC<BackgroundDimProps> = ({ menu, style }) => {
+export const BackgroundDim: FC<BackgroundDimProps> = ({
+  menu,
+  style,
+  className,
+}) => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
   const removeOpenMenu = useMenuControllerStore(
@@ -29,7 +34,7 @@ export const BackgroundDim: FC<BackgroundDimProps> = ({ menu, style }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-black duration-200 ${
+      className={`fixed top-0 left-0 w-full h-full bg-black duration-200 ${className} ${
         openMenus.includes(menu)
           ? "opacity-50"
           : "opacity-0 pointer-events-none"
