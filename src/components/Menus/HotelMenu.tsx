@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Pill } from "../Pill";
 import { Menu } from "./Menu";
 import { hotels } from "@/data/hotels";
@@ -13,6 +13,21 @@ export const HotelMenu: FC = () => {
 
   const hotel = useHotelSearchStore((state) => state.hotel);
   const setHotel = useHotelSearchStore((state) => state.setHotel);
+
+  const fetchHotels = async () => {
+    const response = await fetch("http://localhost:3001/hotels", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const result = await response.json();
+    setHotel(result);
+    console.log(hotel);
+  };
+
+  useEffect(() => {
+    fetchHotels();
+  }, []);
 
   return (
     <Menu title="Hotels" name="hotels">
@@ -45,7 +60,8 @@ export const HotelMenu: FC = () => {
         </Pill>
       </section>
 
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2"></section>
+      {/* <section className="flex flex-col gap-2">
         {Object.entries(hotels).map(
           ([name, info]) =>
             // Only show hotels that match the selected region OR all hotels if "All" is selected
@@ -67,7 +83,7 @@ export const HotelMenu: FC = () => {
                   </div>
                 </section>
 
-                {/* Selected hotel check */}
+                Selected hotel check
                 <section className="flex items-center pr-4">
                   <div
                     className={`cursor-pointer bg-primary rounded-full p-1 h-fit ${
@@ -80,7 +96,7 @@ export const HotelMenu: FC = () => {
               </div>
             )
         )}
-      </section>
+      </section> */}
     </Menu>
   );
 };
