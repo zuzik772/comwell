@@ -4,11 +4,10 @@ import { Menu } from "./Menu";
 import { BiCheck } from "react-icons/bi";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 import { HotelList } from "@/types/HotelList";
+import { Regions } from "@/types/Regions";
 
 export const HotelMenu: FC = () => {
-  const [regionSelected, setRegionSelected] = useState<
-    "All" | "Zealand" | "Funen" | "Jutland" //Add Regions here instead of strings
-  >("All");
+  const [regionSelected, setRegionSelected] = useState<"All" | Regions>("All");
 
   const selectedHotel = useHotelSearchStore((state) => state.hotel);
   const setSelectedHotel = useHotelSearchStore((state) => state.setHotel);
