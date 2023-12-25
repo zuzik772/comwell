@@ -16,12 +16,7 @@ export const TeasersCard = ({
   imageUrl,
 }: TeasersCardProps) => {
   return (
-    <div
-      style={{
-        backgroundImage: `url("${imageUrl}")`,
-      }}
-      className="bg-cover max-w-sm w-[416px] h-[590px] rounded-xl"
-    >
+    <div className="max-w-sm w-[416px] h-[590px] rounded-xl cursor-pointer group overflow-hidden relative">
       <div className=" flex flex-col justify-end text-white h-full   ">
         <span className="mb-auto w-fit bg-white text-black font-semibold uppercase text-xs px-2 py-0.5 rounded-2xl ml-4 mt-4">
           {label}
@@ -37,6 +32,12 @@ export const TeasersCard = ({
           <p className="text-xs">{paragraph}</p>
         </div>
       </div>
+      <div
+        className="bg-cover absolute top-0 left-0 w-full h-full -z-10 group-hover:scale-105 duration-300"
+        style={{
+          backgroundImage: `url("${imageUrl}")`,
+        }}
+      />
     </div>
   );
 };

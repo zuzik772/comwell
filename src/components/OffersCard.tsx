@@ -23,14 +23,16 @@ export const OffersCard = ({
   labelDesc,
 }: OffersCardProps) => {
   return (
-    <div className="bg-gray-300 max-w-sm rounded-xl flex flex-col justify-between">
-      <Image
-        src={imageSrc}
-        alt={imageAlt}
-        width={384}
-        height={384}
-        className="rounded-t-xl"
-      />
+    <div className="bg-gray-300 max-w-sm rounded-xl flex flex-col justify-between cursor-pointer group overflow-hidden">
+      <section className="h-96 overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          width={384}
+          height={384}
+          className="rounded-t-xl group-hover:scale-105 duration-300"
+        />
+      </section>
       <div className="p-4 flex grow flex-col gap-2 justify-between border-2 border-solid border-gray-300 rounded-xl">
         <div>
           <OffersCardLabel label={label} labelDesc={labelDesc} />
