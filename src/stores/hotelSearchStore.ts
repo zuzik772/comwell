@@ -1,13 +1,9 @@
-import {
-  Events,
-  Hotels,
-  RoomSearchParameters,
-} from "@/types/HotelSearchParameters";
+import { Events, RoomSearchParameters } from "@/types/HotelSearchParameters";
 import { create } from "zustand";
 
 type HotelSearchParameters = {
-  hotel: Hotels | null;
-  setHotel: (values: Hotels) => void;
+  hotel: string | null;
+  setHotel: (values: string) => void;
 
   rooms: RoomSearchParameters[];
   setRooms: (values: RoomSearchParameters[]) => void;
