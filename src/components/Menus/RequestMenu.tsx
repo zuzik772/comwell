@@ -64,6 +64,7 @@ export const RequestMenu: FC = () => {
         fullName,
         email,
         phone,
+        comment,
       }),
     });
     if (!response.ok) {
