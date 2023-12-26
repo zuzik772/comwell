@@ -111,25 +111,22 @@ export const RequestMenu: FC = () => {
           </div>
           <div className="flex flex-col gap-2">
             <img
-              src="https://cdn.dwarf.dk/comwell-cms-production/img/containers/main/m%C3%B8der_konferencer/comwell_moede-og-konference41.jpg/636f34e0fcca9da5c8a8dde859a5bf2f.webp"
-              alt="meeting room"
+              src={selectedMeetingRoom?.picture}
+              alt={selectedMeetingRoom?.description}
             />
-            <div className="flex px-12 py-2">
-              <section className="w-1/2">
-                <h2>{selectedHotel}</h2>
-              </section>
-              <section className="w-1/2 flex flex-col gap-4 pb-20">
-                <p>{selectedMeetingRoom?.description}</p>
-                <p>
-                  Meeting room capacity:{" "}
-                  <i>{selectedMeetingRoom?.maxCapacity} people</i>
-                </p>
-                <ul className="flex w-full h-64s items-center gap-4 overflow-auto">
-                  {selectedMeetingRoom?.bulletPoints.map((bulletPoint) => (
-                    <li>{bulletPoint}</li>
-                  ))}
-                </ul>
-              </section>
+            <div className="flex gap-2 flex-col px-12 py-2">
+              <h2>{selectedHotel}</h2>
+              <p>{selectedMeetingRoom?.description}</p>
+              <p>
+                Meeting room capacity:{" "}
+                <i>{selectedMeetingRoom?.maxCapacity} people</i>
+              </p>
+              <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-40">
+                {selectedMeetingRoom?.bulletPoints.map((bulletPoint) => (
+                  <li>{bulletPoint}</li>
+                ))}
+              </ul>
+
               <section className="fixed bottom-0 right-0 w-fit h-24 flex items-center px-4">
                 <Button
                   onClick={() => setSelectedSubMenu("meetingRoomBooking")}
