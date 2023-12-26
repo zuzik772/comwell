@@ -177,6 +177,15 @@ export const SearchMenu: FC = () => {
       ) : selectedSubMenu === "booking" ? (
         // booking: Customer booking information
         <>
+          <div
+            className="cursor-pointer bg-secondary rounded-full p-1.5 w-max"
+            onClick={() => {
+              setSelectedRoom(selectedRoom);
+              setSelectedSubMenu("roomInfo");
+            }}
+          >
+            <BiArrowBack className="text-xl" />
+          </div>
           <div className="flex h-full">
             <section className="w-3/5 h-full p-4 flex flex-col gap-4">
               <h3>Guest Information</h3>

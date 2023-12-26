@@ -254,10 +254,15 @@ export const RequestMenu: FC = () => {
           </section>
           <section className="flex flex-col gap-4 h-full">
             <h1>Booking Confirmed</h1>
-            <p className="text-xl">Your room has sucessfully been booked</p>
+            <p className="text-xl">
+              Your meeting room has been sucessfully booked
+            </p>
             <div className="flex w-full h-full">
               <div className="flex flex-col gap-2 w-1/2 h-full p-4">
                 <h3>Customer Info</h3>
+                <p>
+                  <span className="font-semibold">Company:</span> {company}
+                </p>
                 <p>
                   <span className="font-semibold">Name:</span> {fullName}
                 </p>
@@ -271,7 +276,7 @@ export const RequestMenu: FC = () => {
                 </p>
               </div>
               <div className="bg-gray-100 w-1/2 h-full p-4">
-                <h3>Room Info</h3>
+                <h3>Meeting Room Info</h3>
                 <div className="w-full h-16 flex gap-2">
                   <div className="flex items-center">
                     {/* <img
@@ -281,14 +286,14 @@ export const RequestMenu: FC = () => {
                     /> */}
                   </div>
                   <div className="flex justify-center flex-col">
-                    <p className="font-semibold text-lg">{selectedHotel}</p>
+                    {/* <p className="font-semibold text-lg">{selectedHotel}</p> */}
                     <p className="text-gray-500 font-medium text-sm flex-wrap overflow-hidden line-clamp-2">
-                      {selectedHotel}
+                      {selectedMeetingRoom?.description}
                     </p>
                   </div>
-                  <div className="flex items-center">
+                  {/* <div className="flex items-center">
                     <p className="font-semibold text-lg">PRICE</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
