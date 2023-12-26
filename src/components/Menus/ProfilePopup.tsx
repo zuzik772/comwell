@@ -1,12 +1,12 @@
 import { FC, useState, MouseEvent, useEffect } from "react";
-import { Input } from "./Input";
-import { TextLink } from "./TextLink";
-import { Button } from "./Button";
+import { Input } from "../Input";
+import { TextLink } from "../TextLink";
+import { Button } from "../Button";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { useLoginManagerStore } from "@/stores/loginManagerStore";
 
 import { getTokenInfo } from "@/services/getTokenInfo";
-import { BackgroundDim } from "./BackgroundDim";
+import { BackgroundDim } from "../BackgroundDim";
 
 export const ProfilePopup: FC = () => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);

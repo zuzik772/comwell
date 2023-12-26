@@ -1,4 +1,4 @@
-import { FooterListItem } from "./FooterListItem";
+import { FooterNavigation } from "./FooterNavigation";
 import Link from "next/link";
 import { FooterContactListItem } from "./FooterContactListItem";
 import Image from "next/image";
@@ -9,11 +9,12 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 import { MdLanguage } from "react-icons/md";
-import { ReactNode, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import { FooterHeading } from "./FooterHeadings";
 import { FooterSocialMedia } from "./FooterSocialMedia";
+import { FooterLinks } from "./FooterLinks";
 
-export const Footer = () => {
+export const Footer: FC = () => {
   const [hoveredTitle, setHoveredTitle] = useState<ReactNode | null>("");
   const handleHover = (title: ReactNode | null) => {
     setHoveredTitle(title);
@@ -43,17 +44,17 @@ export const Footer = () => {
         <ul>
           {titles.map((title) => {
             return (
-              <FooterListItem
+              <FooterNavigation
                 key={title}
                 handleHover={handleHover}
-                customClass={`text-3xl cursor-pointer ${
+                className={
                   hoveredTitle === title || hoveredTitle === null
                     ? "opacity-100"
                     : "opacity-50"
-                }`}
+                }
               >
                 {title}
-              </FooterListItem>
+              </FooterNavigation>
             );
           })}
         </ul>
@@ -71,12 +72,12 @@ export const Footer = () => {
           <div className="flex flex-col gap-8">
             <FooterContactListItem
               title={"Book accommodation"}
-              phone={"Phone: (+45) 70 274 274 press 2"}
+              phone={'Phone: (+45) 70 274 274 | Press "2"'}
               email={"Email: booking@comwell.com"}
             />
             <FooterContactListItem
               title={"Book conference"}
-              phone={"Phone: (+45) 70 274 274 press 1"}
+              phone={'Phone: (+45) 70 274 274 | Press "1"'}
               email={"Email: konference@comwell.com"}
             />
           </div>
@@ -85,15 +86,7 @@ export const Footer = () => {
           <FooterHeading heading="links" />
 
           {links.map((link) => {
-            return (
-              <FooterListItem
-                key={link}
-                handleHover={handleHover}
-                customClass={`text-sm leading-6`}
-              >
-                {link}
-              </FooterListItem>
-            );
+            return <FooterLinks key={link}>{link}</FooterLinks>;
           })}
         </ul>
       </nav>
@@ -104,16 +97,19 @@ export const Footer = () => {
         </Link>
         <ul className="flex justify-between w-1/4">
           <FooterSocialMedia
-            title={"Facebook"}
-            icon={<AiFillFacebook size={22} className="mr-1" />}
+            title="Facebook"
+            link="https://www.facebook.com"
+            icon={<AiFillFacebook size={22} />}
           />
           <FooterSocialMedia
-            title={"LinkedIn"}
-            icon={<AiFillLinkedin size={22} className="ml-2" />}
+            title="LinkedIn"
+            link="https://www.linkedin.com"
+            icon={<AiFillLinkedin size={22} />}
           />
           <FooterSocialMedia
-            title={"Instagram"}
-            icon={<AiFillInstagram size={22} className="m-2" />}
+            title="Instagram"
+            link="https://www.instagram.com"
+            icon={<AiFillInstagram size={22} />}
           />
         </ul>
         <button className="flex justify-center items-center gap-1">

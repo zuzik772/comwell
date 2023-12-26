@@ -1,24 +1,26 @@
-import React from "react";
+import React, { FC, ReactElement } from "react";
 import { IconType } from "react-icons";
 
 type FooterHeadingsProps = {
   title: string;
-  icon: any;
+  link: string;
+  icon: ReactElement<IconType>;
   className?: string;
 };
 
-export const FooterSocialMedia = ({
+export const FooterSocialMedia: FC<FooterHeadingsProps> = ({
   title,
+  link,
   icon,
   className,
-}: FooterHeadingsProps) => {
+}) => {
   return (
     <a
-      className="flex justify-center items-center text-xs leading-3 font-medium"
+      className={`flex justify-center items-center text-xs font-medium gap-1 ${className}`}
       target="_blank"
-      href="https://www.facebook.com"
+      href={link}
     >
-      {icon && React.cloneElement(icon, { className })}
+      {icon}
       {title}
     </a>
   );
