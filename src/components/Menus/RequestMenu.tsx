@@ -48,39 +48,29 @@ export const RequestMenu: FC = () => {
   useEffect(() => {
     if (!openMenus.includes("request")) return setAvailableMeetingRooms([]);
     const searchUrl = new URL(`http://localhost:3001/meeting-rooms`);
-    console.log(searchUrl);
     fetch(searchUrl.href)
       .then((res) => res.json())
       .then((data) => setAvailableMeetingRooms(data));
   }, [openMenus]);
 
   const handleMeetingRoomBooking = async () => {
-    // console.log("Your meeting room has been booked");
-    // const response = await fetch(
-    //   "http://localhost:3001/bookings/meeting-room-booking",
-    //   {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //       hotel: {
-    //         hotelName: selectedHotel,
-    //         rooms: [selectedRoom],
-    //         dates: selectedDates,
-    //       },
-    //       customerInfo: {
-    //         fullName: bookingFullName,
-    //         email: bookingEmail,
-    //         phone: bookingPhone,
-    //       },
-    //     }),
-    //   }
-    // );
-
-    // if (!response.ok)
-    //   return alert(
-    //     "An error occured while booking rooms (Server responded with an error)"
-    //   );
-    //else
+    const response = await fetch("http://localhost:3001/bookers-info", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        company,
+        optionalDepartment,
+        optionalMeetingName,
+        fullName,
+        email,
+        phone,
+      }),
+    });
+    if (!response.ok) {
+      return alert(
+        "An error occured while booking a meeting room (Server responded with an error)"
+      );
+    }
     setSelectedSubMenu("meetingRoomBookingSuccess");
   };
 
