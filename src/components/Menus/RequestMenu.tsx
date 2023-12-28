@@ -11,6 +11,8 @@ import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 import { FaSearch } from "react-icons/fa";
 import { Dropdown } from "../Dropdown";
 import { Input } from "../Input";
+import { getTokenInfo } from "@/services/getTokenInfo";
+import { useLoginManagerStore } from "@/stores/loginManagerStore";
 
 export const RequestMenu: FC = () => {
   const [availableMeetingRooms, setAvailableMeetingRooms] = useState<
@@ -45,6 +47,23 @@ export const RequestMenu: FC = () => {
   const setSelectedSubMenu = useSearchMenuControllerStore(
     (state) => state.setSearchMenuSubMenu
   );
+
+  const token = useLoginManagerStore((state) => state.token);
+
+  useEffect(() => {
+    const tokenInfo = getTokenInfo(token);
+
+    if (token) {
+      setFullName(tokenInfo.fullName);
+      setEmail(tokenInfo.email);
+      setPhone(tokenInfo.phone || null);
+    } else {
+      setFullName("");
+      setEmail("");
+      setPhone(null);
+    }
+  }, [token]);
+
   useEffect(() => {
     if (!openMenus.includes("request")) return setAvailableMeetingRooms([]);
     const searchUrl = new URL(`http://localhost:3001/meeting-rooms`);
