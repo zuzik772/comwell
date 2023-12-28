@@ -121,7 +121,7 @@ export const RequestMenu: FC = () => {
                 Meeting room capacity:{" "}
                 <i>{selectedMeetingRoom?.maxCapacity} people</i>
               </p>
-              <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-40">
+              <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-4`0">
                 {selectedMeetingRoom?.bulletPoints.map((bulletPoint) => (
                   <li>{bulletPoint}</li>
                 ))}
