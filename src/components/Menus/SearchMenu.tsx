@@ -106,7 +106,6 @@ export const SearchMenu: FC = () => {
     <Menu title="Choose room" name="search" large>
       {selectedSubMenu === "selection" ? (
         // selection: Room picker
-
         <>
           {/* If room search has completed (has rooms) */}
           {availableRooms.length ? (
@@ -173,15 +172,6 @@ export const SearchMenu: FC = () => {
         </>
       ) : selectedSubMenu === "booking" ? (
         <>
-          <div
-            className="cursor-pointer bg-secondary rounded-full p-1.5 w-max"
-            onClick={() => {
-              setSelectedRoom(selectedRoom);
-              setSelectedSubMenu("roomInfo");
-            }}
-          >
-            <BiArrowBack className="text-xl" />
-          </div>
           <div className="flex h-full">
             <section className="w-3/5 h-full p-4 flex flex-col gap-4">
               <h3>Guest Information</h3>
@@ -206,7 +196,6 @@ export const SearchMenu: FC = () => {
             </section>
             <section className="w-2/5 h-full p-4 flex flex-col gap-4 bg-gray-100">
               <h3>Overview</h3>
-              {/* TODO: Support booking multiple rooms */}
               <div className="w-full flex gap-2">
                 <div className="flex items-center">
                   <img
@@ -229,7 +218,7 @@ export const SearchMenu: FC = () => {
               </div>
             </section>
           </div>
-          <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
+          <section className="absolute bottom-0 right-0 w-full h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
             <Button
               onClick={handleBooking}
               disabled={!(bookingFullName && bookingEmail && bookingPhone)}

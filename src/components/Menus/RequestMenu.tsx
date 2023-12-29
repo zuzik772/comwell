@@ -127,7 +127,7 @@ export const RequestMenu: FC = () => {
           >
             <BiArrowBack />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 relative">
             <img
               src={selectedMeetingRoom?.picture}
               alt={selectedMeetingRoom?.description}
@@ -139,13 +139,13 @@ export const RequestMenu: FC = () => {
                 Meeting room capacity:{" "}
                 <i>{selectedMeetingRoom?.maxCapacity} people</i>
               </p>
-              <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-4`0">
+              <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-4 pb-40">
                 {selectedMeetingRoom?.bulletPoints.map((bulletPoint) => (
                   <li>{bulletPoint}</li>
                 ))}
               </ul>
 
-              <section className="fixed bottom-0 right-0 w-fit h-24 flex items-center px-4">
+              <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t border-gray-300 pt-4 bg-white">
                 <Button
                   onClick={() => setSelectedSubMenu("meetingRoomBooking")}
                 >
@@ -193,14 +193,14 @@ export const RequestMenu: FC = () => {
                   <Dropdown
                     type="time"
                     title="Start"
-                    value={times.startTime} // These should be the clicked time
+                    value={times.startTime}
                     onClick={() => addOpenMenu("startTime")}
                     small
                   />
                   <Dropdown
                     type="time"
                     title="End"
-                    value={times.endTime} // These should be the clicked time
+                    value={times.endTime}
                     onClick={() => addOpenMenu("endTime")}
                     small
                   />
