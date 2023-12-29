@@ -64,7 +64,6 @@ export const useHotelSearchStore = create<HotelSearchParameters>((set) => ({
 
   dates: {
     startDate: new Date(),
-    // Tomorrow
     endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
   },
   setDates: (values) => set(() => ({ dates: values })),
@@ -74,10 +73,10 @@ export const useHotelSearchStore = create<HotelSearchParameters>((set) => ({
 
   //Here is where the time on Dropdown comes from
   times: {
-    startTime: "08:00", // TODO: Make date?
-    endTime: "16:00", // TODO: Make date?
+    startTime: "08:00",
+    endTime: "16:00",
   },
-  setTimes: (values) => set(() => ({ times: values })), //Maybe we can use this function to change the time
+  setTimes: (values) => set(() => ({ times: values })),
 
   event: null,
   setEvent: (values) => set(() => ({ event: values })),

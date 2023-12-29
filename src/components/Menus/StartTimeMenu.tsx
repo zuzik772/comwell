@@ -3,7 +3,6 @@ import { Menu } from "./Menu";
 import { SelectTimeButton } from "../SelectTimeButton";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
 import { generateTimes } from "@/utils/generateTimes";
-import { BiCheck } from "react-icons/bi";
 
 export const StartTimeMenu: FC = () => {
   const availableTimes = generateTimes();

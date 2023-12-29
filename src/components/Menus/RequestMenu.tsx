@@ -8,7 +8,6 @@ import { useSearchMenuControllerStore } from "@/stores/searchMenuControllerStore
 import { BiArrowBack, BiCheckCircle } from "react-icons/bi";
 import { Button } from "../Button";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
-import { FaSearch } from "react-icons/fa";
 import { Dropdown } from "../Dropdown";
 import { Input } from "../Input";
 import { getTokenInfo } from "@/services/getTokenInfo";
@@ -157,7 +156,6 @@ export const RequestMenu: FC = () => {
           </div>
         </>
       ) : selectedSubMenu === "meetingRoomBooking" ? (
-        // booking: Customer booking information
         <>
           <div
             className="cursor-pointer bg-secondary rounded-full p-1.5 w-max"

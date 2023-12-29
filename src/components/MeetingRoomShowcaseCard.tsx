@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MeetingRoom } from "@/types/MeetingRoom";
-import { BiArrowBack, BiArrowToRight } from "react-icons/bi";
+import { BiArrowBack } from "react-icons/bi";
 
 type MeetingRoomsShowcaseCardProps = {
   meetingRoom: MeetingRoom;

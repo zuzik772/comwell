@@ -8,13 +8,12 @@ export const ParticipantsMenu: FC = () => {
   const participants = useHotelSearchStore((state) => state.participants);
   const setParticipants = useHotelSearchStore(
     (state) => state.setParticipants
-  ) as (value: number) => void; // Had to set the type explicitly
+  ) as (value: number) => void;
 
   const handleParticipantsInput = (settings: {
     method: "plus" | "minus" | "set";
     value?: number;
   }) => {
-    //This is the solution I have for ensuring the values stay between 0 & 600, let me know if there is a better one
     if (settings.method === "plus") {
       setParticipants(Math.min(participants + 1, 600)); //.min retruns the smaller of 2 values
     } else if (settings.method === "minus") {

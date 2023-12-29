@@ -128,14 +128,14 @@ const Home = () => {
                     <Dropdown
                       type="time"
                       title="Start"
-                      value={times.startTime} // These should be the clicked time
+                      value={times.startTime}
                       onClick={() => addOpenMenu("startTime")}
                       small
                     />
                     <Dropdown
                       type="time"
                       title="End"
-                      value={times.endTime} // These should be the clicked time
+                      value={times.endTime}
                       onClick={() => addOpenMenu("endTime")}
                       small
                     />

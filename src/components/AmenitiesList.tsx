@@ -16,7 +16,6 @@ export const AmenitiesList: FC<{ room: Room }> = ({ room }) => {
           Double bed
         </div>
       ) : null}
-      {/* Mapping through all amenities */}
       {room.amenities.map((amenity) => (
         <div className="flex items-center gap-2" key={amenity}>
           {amenity === "TV" ? (

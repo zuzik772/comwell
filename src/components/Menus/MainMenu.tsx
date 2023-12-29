@@ -1,14 +1,10 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 
 import { BackgroundDim } from "../BackgroundDim";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 
 export const MainMenu: FC = () => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
-  const addOpenMenu = useMenuControllerStore((state) => state.addOpenMenu);
-  const removeOpenMenu = useMenuControllerStore(
-    (state) => state.removeOpenMenu
-  );
 
   return (
     <>

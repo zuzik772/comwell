@@ -78,25 +78,22 @@ export const SearchMenu: FC = () => {
   }, [openMenus]);
 
   const handleBooking = async () => {
-    const response = await fetch(
-      "http://localhost:3001/bookings/create-booking",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          hotel: {
-            hotelName: selectedHotel,
-            rooms: [selectedRoom],
-            dates: selectedDates,
-          },
-          customerInfo: {
-            fullName: bookingFullName,
-            email: bookingEmail,
-            phone: bookingPhone,
-          },
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:3001/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        hotel: {
+          hotelName: selectedHotel,
+          rooms: [selectedRoom],
+          dates: selectedDates,
+        },
+        customerInfo: {
+          fullName: bookingFullName,
+          email: bookingEmail,
+          phone: bookingPhone,
+        },
+      }),
+    });
 
     if (!response.ok)
       return alert(
@@ -175,7 +172,6 @@ export const SearchMenu: FC = () => {
           </div>
         </>
       ) : selectedSubMenu === "booking" ? (
-        // booking: Customer booking information
         <>
           <div
             className="cursor-pointer bg-secondary rounded-full p-1.5 w-max"
@@ -233,7 +229,7 @@ export const SearchMenu: FC = () => {
               </div>
             </section>
           </div>
-          <section className="absolute bottom-0 left-0 w-full h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
+          <section className="fixed bottom-0 right-0 w-[48rem] h-24 border-t bg-white border-gray-300 flex justify-end items-center px-4">
             <Button
               onClick={handleBooking}
               disabled={!(bookingFullName && bookingEmail && bookingPhone)}

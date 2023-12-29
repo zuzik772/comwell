@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, useState } from "react";
 import { Menu } from "./Menu";
 import { useLoginManagerStore } from "@/stores/loginManagerStore";
 import { Input } from "../Input";
