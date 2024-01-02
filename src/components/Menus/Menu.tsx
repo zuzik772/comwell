@@ -1,6 +1,5 @@
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
 import { FC, ReactNode, useEffect } from "react";
-import { MdClose } from "react-icons/md";
 import { BackgroundDim } from "../BackgroundDim";
 
 export const Menu: FC<{
@@ -10,10 +9,6 @@ export const Menu: FC<{
   children: ReactNode;
 }> = ({ title, name, large, children }) => {
   const openMenus = useMenuControllerStore((state) => state.openMenus);
-  const removeOpenMenu = useMenuControllerStore(
-    (state) => state.removeOpenMenu
-  );
-
   const open = openMenus.includes(name);
 
   return (
@@ -31,12 +26,6 @@ export const Menu: FC<{
       >
         <section className="flex justify-between">
           <h2>{title}</h2>
-          <div
-            className="cursor-pointer bg-secondary rounded-full p-1.5 h-fit"
-            onClick={() => removeOpenMenu(name)}
-          >
-            <MdClose className="text-xl" />
-          </div>
         </section>
         {children}
       </main>
