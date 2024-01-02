@@ -141,7 +141,7 @@ export const RequestMenu: FC = () => {
               </p>
               <ul className="flex flex-col w-full gap-1 list-disc pl-6 pb-4 pb-40">
                 {selectedMeetingRoom?.bulletPoints.map((bulletPoint) => (
-                  <li>{bulletPoint}</li>
+                  <li key={bulletPoint}>{bulletPoint}</li>
                 ))}
               </ul>
 
