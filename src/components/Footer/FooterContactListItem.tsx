@@ -1,14 +1,16 @@
+import { FC } from "react";
+
 type FooterContactListItemProps = {
   title: string;
   phone: string;
   email: string;
 };
 
-export const FooterContactListItem = ({
+export const FooterContactListItem: FC<FooterContactListItemProps> = ({
   title,
   phone,
   email,
-}: FooterContactListItemProps) => {
+}) => {
   return (
     <li>
       <p className="font-semibold mb-2">{title}</p>

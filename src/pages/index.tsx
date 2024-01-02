@@ -110,7 +110,7 @@ const Home = () => {
                     type="text"
                     title="Amount of participants"
                     value={participants}
-                    onClick={() => alert("Participants Dropdown Clicked")}
+                    onClick={() => addOpenMenu("participants")}
                   />
                   <Dropdown
                     type="hotel"
@@ -129,20 +129,20 @@ const Home = () => {
                       type="time"
                       title="Start"
                       value={times.startTime}
-                      onClick={() => alert("Start Dropdown Clicked")}
+                      onClick={() => addOpenMenu("startTime")}
                       small
                     />
                     <Dropdown
                       type="time"
                       title="End"
                       value={times.endTime}
-                      onClick={() => alert("End Dropdown Clicked")}
+                      onClick={() => addOpenMenu("endTime")}
                       small
                     />
                   </div>
 
                   <Button
-                    onClick={() => alert("Request Button Clicked")}
+                    onClick={() => addOpenMenu("request")}
                     fullWidth
                     // Disable the button if any of the required fields are empty
                     disabled={

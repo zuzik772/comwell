@@ -1,8 +1,10 @@
+import { FC } from "react";
+
 type FooterHeadingsProps = {
   heading: string;
 };
 
-export const FooterHeading = ({ heading }: FooterHeadingsProps) => {
+export const FooterHeading: FC<FooterHeadingsProps> = ({ heading }) => {
   return (
     <h6
       className={

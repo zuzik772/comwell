@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from "react";
+import { FC, useState } from "react";
 import { Menu } from "./Menu";
 import { useLoginManagerStore } from "@/stores/loginManagerStore";
 import { Input } from "../Input";
@@ -16,13 +16,10 @@ export const RegisterMenu: FC = () => {
   const setToken = useLoginManagerStore((state) => state.setToken);
   const setOpenMenus = useMenuControllerStore((state) => state.setOpenMenus);
 
-  const handleRegister = async (
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleRegister = async () => {
     if (password !== confirmPassword) return alert("Passwords do not match");
 
-    event.preventDefault();
-    const response = await fetch("http://localhost:3000/auth/signup", {
+    const response = await fetch("http://localhost:3001/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ fullName, email, password, zipCode, phone }),
@@ -39,7 +36,7 @@ export const RegisterMenu: FC = () => {
       <section className="flex flex-col gap-16">
         <p className="text-sm font-medium">
           Become a member of Comwell Club for free and earn points everytime you
-          stay with us. You'll also receive 25 points when you sign up
+          stay with us. You&apos;ll also receive 25 points when you sign up
         </p>
         <div className="flex flex-col gap-4">
           <Input
@@ -81,7 +78,7 @@ export const RegisterMenu: FC = () => {
               password === confirmPassword && "hidden"
             }`}
           >
-            Passwords don't match!
+            Passwords don&apos;t match!
           </p>
         </div>
       </section>

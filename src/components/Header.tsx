@@ -4,10 +4,12 @@ import Image from "next/image";
 import { BiChevronDown } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
-import { ProfilePopup } from "./ProfilePopup";
+import { ProfilePopup } from "./Menus/ProfilePopup";
 import Link from "next/link";
 import { useHeaderControllerStore } from "@/stores/headerControllerStore";
 import { useMenuControllerStore } from "@/stores/menuControllerStore";
+import { MainMenu } from "./Menus/MainMenu";
+import { LocationsMenu } from "./Menus/LocationsMenu";
 
 export const Header: FC = () => {
   const navbarVisible = useHeaderControllerStore(
@@ -84,7 +86,10 @@ export const Header: FC = () => {
       </header>
 
       {/* Locations Card */}
+      <LocationsMenu />
       <ProfilePopup />
+      <MainMenu />
+
       {/* Main Menu */}
     </>
   );

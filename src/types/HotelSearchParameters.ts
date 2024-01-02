@@ -1,5 +1,3 @@
-export type Hotels = "Hotel1" | "Hotel2" | "Hotel3";
-
 export type RoomSearchParameters = {
   adults: number;
   kids: number;

@@ -1,18 +1,30 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Pill } from "../Pill";
 import { Menu } from "./Menu";
-import { hotels } from "@/data/hotels";
 import { BiCheck } from "react-icons/bi";
 import { useHotelSearchStore } from "@/stores/hotelSearchStore";
-import { Hotels } from "@/types/HotelSearchParameters";
+import { HotelList } from "@/types/HotelList";
+import { Regions } from "@/types/Regions";
 
 export const HotelMenu: FC = () => {
-  const [regionSelected, setRegionSelected] = useState<
-    "All" | "Zealand" | "Funen" | "Jutland"
-  >("All");
+  const [regionSelected, setRegionSelected] = useState<"All" | Regions>("All");
 
-  const hotel = useHotelSearchStore((state) => state.hotel);
-  const setHotel = useHotelSearchStore((state) => state.setHotel);
+  const selectedHotel = useHotelSearchStore((state) => state.hotel);
+  const setSelectedHotel = useHotelSearchStore((state) => state.setHotel);
+
+  const [hotelList, setHotelList] = useState<HotelList[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("http://localhost:3001/hotels", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const result = await response.json();
+      setHotelList(result);
+    })();
+  }, []);
 
   return (
     <Menu title="Hotels" name="hotels">
@@ -46,24 +58,24 @@ export const HotelMenu: FC = () => {
       </section>
 
       <section className="flex flex-col gap-2">
-        {Object.entries(hotels).map(
-          ([name, info]) =>
+        {hotelList.map(
+          (hotel) =>
             // Only show hotels that match the selected region OR all hotels if "All" is selected
-            (regionSelected === "All" || regionSelected === info.group) && (
+            (regionSelected === "All" || regionSelected === hotel.group) && (
               <div
                 className="flex justify-between border border-gray-300 hover:border-gray-500 rounded-sm h-16 cursor-pointer"
-                key={name}
-                onClick={() => setHotel(name as Hotels)}
+                key={hotel.title}
+                onClick={() => setSelectedHotel(hotel.title)}
               >
                 <section className="relative">
                   <img
-                    src={info.picture}
-                    alt={name}
+                    src={hotel.picture}
+                    alt={hotel.title}
                     className="h-full w-20 object-cover absolute"
                   />
                   <div className="ml-20 flex flex-col p-2">
-                    <p className="text-lg font-semibold">{name}</p>
-                    <p>{info.location}</p>
+                    <p className="text-lg font-semibold">{hotel.title}</p>
+                    <p>{hotel.city}</p>
                   </div>
                 </section>
 
@@ -71,7 +83,7 @@ export const HotelMenu: FC = () => {
                 <section className="flex items-center pr-4">
                   <div
                     className={`cursor-pointer bg-primary rounded-full p-1 h-fit ${
-                      hotel !== name && "hidden"
+                      selectedHotel !== hotel.title && "hidden"
                     }`}
                   >
                     <BiCheck className="text-white text-lg" />

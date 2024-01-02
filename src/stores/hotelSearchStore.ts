@@ -1,13 +1,9 @@
-import {
-  Events,
-  Hotels,
-  RoomSearchParameters,
-} from "@/types/HotelSearchParameters";
+import { Events, RoomSearchParameters } from "@/types/HotelSearchParameters";
 import { create } from "zustand";
 
 type HotelSearchParameters = {
-  hotel: Hotels | null;
-  setHotel: (values: Hotels) => void;
+  hotel: string | null;
+  setHotel: (values: string) => void;
 
   rooms: RoomSearchParameters[];
   setRooms: (values: RoomSearchParameters[]) => void;
@@ -29,7 +25,6 @@ type HotelSearchParameters = {
     endTime: string;
   };
   setTimes: (values: { startTime: string; endTime: string }) => void;
-
   event: Events | null;
   setEvent: (values: Events) => void;
 };
@@ -69,7 +64,6 @@ export const useHotelSearchStore = create<HotelSearchParameters>((set) => ({
 
   dates: {
     startDate: new Date(),
-    // Tomorrow
     endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
   },
   setDates: (values) => set(() => ({ dates: values })),
@@ -77,9 +71,10 @@ export const useHotelSearchStore = create<HotelSearchParameters>((set) => ({
   participants: 8,
   setParticipants: (values) => set(() => ({ participants: values })),
 
+  //Here is where the time on Dropdown comes from
   times: {
-    startTime: "08:00", // TODO: Make date?
-    endTime: "16:00", // TODO: Make date?
+    startTime: "08:00",
+    endTime: "16:00",
   },
   setTimes: (values) => set(() => ({ times: values })),
 
